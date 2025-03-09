@@ -78,17 +78,17 @@ const ExperimentsPage: React.FC = () => {
   const experiments: Experiment[] = [
     {
       id: "exp1",
-      title: "Circuit Theory and Applications",
-      domain: "Electronics",
-      discipline: "Electrical Engineering",
+      title: "Bubble Sort",
+      domain: "Computer Science",
+      discipline: "Computer Science and Engineering",
       description:
-        "Learn about basic circuit theorems and their practical applications in electronic systems.",
+        "Learn about the bubble sort algorithm and visualize the sorting process step-by-step.",
       image: "https://i.imgur.com/ZXjAszt.jpg",
       rating: 4.7,
-      collegeName: "IIT Delhi",
+      collegeName: "IIIT Hyderabad",
       collegeLogo:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/Indian_Institute_of_Technology_Delhi_Logo.svg/220px-Indian_Institute_of_Technology_Delhi_Logo.svg.png",
-      labName: "Basic Electronics Lab",
+        "https://upload.wikimedia.org/wikipedia/en/thumb/c/c2/IIIT_Hyderabad_Logo.svg/220px-IIIT_Hyderabad_Logo.svg.png",
+      labName: "Software Engineering Research Centre",
     },
     {
       id: "exp2",
@@ -820,11 +820,12 @@ const ExperimentsPage: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4 }}
-                        className={`rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
+                        className={`rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer ${
                           isDarkMode
                             ? "bg-gray-900 border border-gray-800"
                             : "bg-white border border-gray-100"
                         }`}
+                        onClick={() => window.location.href = `/experiment`}
                       >
                         {/* Card Image */}
                         <div className="h-48 overflow-hidden relative">
@@ -834,7 +835,7 @@ const ExperimentsPage: React.FC = () => {
                             className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                           />
                         </div>
-
+                  
                         {/* Card Content */}
                         <div className="p-4">
                           <h3 className="text-lg font-semibold mb-2">

@@ -8,6 +8,7 @@ import Footer from "@/components/layout/Footer";
 
 const DevelopmentPage: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Add this line for navbar
   const [activeSection, setActiveSection] = useState('onboarding-process');
 
   // Use system preference for initial theme
@@ -21,6 +22,10 @@ const DevelopmentPage: React.FC = () => {
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
+  };
+  
+  const toggleMenu = () => { // Add this toggle function for navbar
+    setIsMenuOpen(!isMenuOpen);
   };
   
   // Side navigation menu categories and items
@@ -306,6 +311,13 @@ const DevelopmentPage: React.FC = () => {
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-950 text-gray-100' : 'bg-gray-50 text-gray-900'} transition-colors duration-200`}>
+      {/* Add Navbar component here */}
+      <Navbar
+        isDarkMode={isDarkMode}
+        toggleTheme={toggleTheme}
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
+      />
       {/* Main Content */}
       <main className="container mx-auto pt-24 px-4 space-y-8 pb-16">
         {/* Page Header */}
@@ -460,6 +472,8 @@ const DevelopmentPage: React.FC = () => {
           </div>
         </section>
       </main>
+      {/* Add Footer component here */}
+      <Footer isDarkMode={isDarkMode} />
     </div>
   );
 };
