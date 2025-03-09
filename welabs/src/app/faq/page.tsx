@@ -377,8 +377,6 @@ const FAQPage: React.FC = () => {
       <Navbar
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
         isMenuOpen={isMenuOpen}
         toggleMenu={toggleMenu}
       />
