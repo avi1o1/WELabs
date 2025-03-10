@@ -49,11 +49,11 @@ const PretestContent: React.FC<PretestProps> = ({ isDarkMode = false }) => {
       question:
         "5. Consider the following pseudo-code:\n" +
         "for i = 0 to 2\n" +
-        "  for j = 0 to i\n" +
-        '    print "*"\n' +
-        "  print newline\n" +
+        "\tfor j = 0 to i\n" +
+        '\t\tprint "*"\n' +
+        "\tprint newline\n" +
         "end\n\nPredict the output:",
-      options: ["*\n**\n***", "*\n*\n* Explanation", "***\n**\n*", "******"],
+      options: ["*\n**\n***", "*\n*\n*", "***\n**\n*", "******"],
       correct: 0,
     },
   ];
