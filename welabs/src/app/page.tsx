@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Search, Sun, Moon, Menu, X, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AIChatAssistant from "@/components/chat";
 
 const VLabsHomePage: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -369,6 +370,9 @@ const VLabsHomePage: React.FC = () => {
 
       {/* Footer */}
       <Footer isDarkMode={false} />
+
+      {/* AI Chat Assistant */}
+      <AIChatAssistant isDarkMode={isDarkMode} />
     </div>
   );
 };
