@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   Search,
   Filter,
@@ -690,15 +691,17 @@ const ExperimentsPage: React.FC = () => {
                                 <div className="flex-grow"></div>
 
                                 {/* Button */}
-                                <button
-                                  className={`w-full py-2 mt-4 rounded-lg font-medium transition-colors cursor-pointer ${
-                                    isDarkMode
-                                      ? "bg-indigo-600 hover:bg-indigo-700 text-white"
-                                      : "bg-indigo-500 hover:bg-indigo-600 text-white"
-                                  }`}
-                                >
-                                  View Details
-                                </button>
+                                <Link href={`/experiment/${experiment.id}`}>
+                                  <button
+                                    className={`w-full py-2 mt-4 rounded-lg font-medium transition-colors cursor-pointer ${
+                                      isDarkMode
+                                        ? "bg-indigo-600 hover:bg-indigo-700 text-white"
+                                        : "bg-indigo-500 hover:bg-indigo-600 text-white"
+                                    }`}
+                                  >
+                                    View Details
+                                  </button>
+                                </Link>
                               </CardContent>
                             </Card>
                           ))}

@@ -173,18 +173,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden flex items-center space-x-3">
-              <a 
-                href="/experiments/"
-                className={`px-3 py-1.5 text-sm font-medium transition-colors ${
-                  isDarkMode 
-                    ? "text-white" 
-                    : "text-gray-800"
-                }`}
-              >
-                Experiments
-              </a>
-              
+            <div className="md:hidden flex items-center space-x-3">              
               <button
                 onClick={toggleTheme}
                 className={`p-2 rounded-full ${
@@ -219,11 +208,10 @@ const Navbar: React.FC<NavbarProps> = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className={`fixed inset-0 z-40 pt-20 ${
-            isDarkMode ? "bg-gray-900" : "bg-white"
-          }`}
+          className={`fixed inset-0 z-40 pt-20 ${isDarkMode ? "bg-gray-900" : "bg-white"
+            } overflow-hidden`}
         >
-          <div className="container mx-auto px-4 pb-8">
+          <div className="container mx-auto px-4 pb-8 h-full overflow-y-auto">
             {/* Mobile nav items */}
             <div className="space-y-4">
               <a
@@ -235,6 +223,15 @@ const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 Experiments
+              </a>
+              <a
+                href="/interactive"
+                className={`block py-3 text-lg font-medium border-b ${isDarkMode
+                    ? "text-white border-gray-800 hover:text-blue-300"
+                    : "text-gray-900 border-gray-100 hover:text-blue-600"
+                  }`}
+              >
+                Interactive
               </a>
               
               {navItems.slice(1).map((item, index) => (
