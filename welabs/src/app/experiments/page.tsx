@@ -691,7 +691,7 @@ const ExperimentsPage: React.FC = () => {
                                 <div className="flex-grow"></div>
 
                                 {/* Button */}
-                                <Link href={`/experiment/${experiment.id}`}>
+                                <Link href={"/experiment"}>
                                   <button
                                     className={`w-full py-2 mt-4 rounded-lg font-medium transition-colors cursor-pointer ${
                                       isDarkMode
