@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown, ChevronRight, Search, X, Plus, Minus } from "lucide-react";
+import { ChevronRight, Search, X, Plus, Minus } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -17,26 +17,26 @@ const FAQPage: React.FC = () => {
   // Use system preference for initial theme
   useEffect(() => {
     // Check localStorage first for saved preference
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem("theme");
 
     if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
+      setIsDarkMode(savedTheme === "dark");
     } else if (
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
       // Fall back to system preference only if no saved preference
       setIsDarkMode(true);
-      localStorage.setItem('theme', 'dark');
+      localStorage.setItem("theme", "dark");
     } else {
-      localStorage.setItem('theme', 'light');
+      localStorage.setItem("theme", "light");
     }
   }, []);
 
   const toggleTheme = () => {
     const newTheme = !isDarkMode;
     setIsDarkMode(newTheme);
-    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
   };
 
   // FAQ Data
@@ -54,66 +54,78 @@ const FAQPage: React.FC = () => {
       answer: (
         <>
           <p className="mb-4">
-            Virtual Labs are intended to augment the learning of science and engineering subjects through
-            performing experiments. The experiments are designed either as simulations or as remote triggered.
-            A remote triggered lab allows a user to connect to real equipment using a web browser.
+            Virtual Labs are intended to augment the learning of science and
+            engineering subjects through performing experiments. The experiments
+            are designed either as simulations or as remote triggered. A remote
+            triggered lab allows a user to connect to real equipment using a web
+            browser.
           </p>
           <p>
-            There are currently around 150 labs and 1500 experiments at various stages of development and
-            deployment. They are currently hosted at Vlabs. Virtual Labs is an initiative of Ministry of
-            Human Resources, India.
+            There are currently around 150 labs and 1500 experiments at various
+            stages of development and deployment. They are currently hosted at
+            Vlabs. Virtual Labs is an initiative of Ministry of Human Resources,
+            India.
           </p>
         </>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 2,
       question: "What are the objectives of the Virtual Labs?",
       answer: (
         <>
-          <p className="mb-4">
-            The broad objectives of the 'Virtual Lab' are:
-          </p>
+          <p className="mb-4">The broad objectives of the 'Virtual Lab' are:</p>
           <ul className="list-disc ml-5 space-y-2">
             <li>To provide remote access to Labs in various disciplines.</li>
-            <li>To arouse curiosity in students and help them learn concepts through remote experimentation.</li>
-            <li>To provide a complete 'Learning Management System' (LMS) around the Virtual labs –
-              access to web-resources, videos, animated demonstrations, and self evaluation.</li>
-            <li>To provide access to resources available to only a limited number of users due to
-              constraints of time and physical locations.</li>
+            <li>
+              To arouse curiosity in students and help them learn concepts
+              through remote experimentation.
+            </li>
+            <li>
+              To provide a complete 'Learning Management System' (LMS) around
+              the Virtual labs – access to web-resources, videos, animated
+              demonstrations, and self evaluation.
+            </li>
+            <li>
+              To provide access to resources available to only a limited number
+              of users due to constraints of time and physical locations.
+            </li>
           </ul>
         </>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 3,
       question: "What are the various types of Virtual Labs?",
       answer: (
         <>
-          <p className="mb-4">
-            There are two types of Virtual Labs:
-          </p>
+          <p className="mb-4">There are two types of Virtual Labs:</p>
           <ul className="list-disc ml-5 space-y-2">
             <li>
-              <strong>Simulation Based Virtual Labs:</strong> In these Virtual Labs, the experiments are
-              modeled using mathematical equations. The simulations are carried out remotely at a high end
-              server, and the results are communicated to the student over the internet. This class of
-              Virtual Labs, at best, mimics the real-world scenarios/experiments. Simulation based Virtual
-              Labs are scalable and can cater to a large number of simultaneous users.
+              <strong>Simulation Based Virtual Labs:</strong> In these Virtual
+              Labs, the experiments are modeled using mathematical equations.
+              The simulations are carried out remotely at a high end server, and
+              the results are communicated to the student over the internet.
+              This class of Virtual Labs, at best, mimics the real-world
+              scenarios/experiments. Simulation based Virtual Labs are scalable
+              and can cater to a large number of simultaneous users.
             </li>
             <li>
-              <strong>Remote Triggered Virtual Labs:</strong> In these Virtual Labs, the actual experiments
-              are triggered remotely. The output of the experiment (being conducted remotely) is communicated
-              back to the student over the internet. This class of Virtual Labs, gives the student the output
-              of real-time experiments. Remote Triggered Virtual Labs are difficult to scale and can cater to
-              a limited number of users. Typically, time-slots are booked before conducting such experiments.
+              <strong>Remote Triggered Virtual Labs:</strong> In these Virtual
+              Labs, the actual experiments are triggered remotely. The output of
+              the experiment (being conducted remotely) is communicated back to
+              the student over the internet. This class of Virtual Labs, gives
+              the student the output of real-time experiments. Remote Triggered
+              Virtual Labs are difficult to scale and can cater to a limited
+              number of users. Typically, time-slots are booked before
+              conducting such experiments.
             </li>
           </ul>
         </>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 4,
@@ -124,21 +136,33 @@ const FAQPage: React.FC = () => {
             The intended beneficiaries of the projects are:
           </p>
           <ol className="list-decimal ml-5 space-y-2">
-            <li>All students and Faculty Members of Science and Engineering Colleges who do not have
-              access to good lab-facilities and/or instruments.</li>
-            <li>High-school students, whose inquisitiveness will be triggered, possibly motivating
-              them to take up higher-studies.</li>
-            <li>Researchers in different institutes who can collaborate /share equipment and resources.</li>
-            <li>Different engineering colleges, who can benefit from the content and related teaching resources.</li>
+            <li>
+              All students and Faculty Members of Science and Engineering
+              Colleges who do not have access to good lab-facilities and/or
+              instruments.
+            </li>
+            <li>
+              High-school students, whose inquisitiveness will be triggered,
+              possibly motivating them to take up higher-studies.
+            </li>
+            <li>
+              Researchers in different institutes who can collaborate /share
+              equipment and resources.
+            </li>
+            <li>
+              Different engineering colleges, who can benefit from the content
+              and related teaching resources.
+            </li>
           </ol>
           <p className="mt-4">
-            The project has completely fulfilled the requirements of the targeted beneficiaries (and even gone beyond).
-            An eco-system has evolved around Virtual Labs, where the community has become involved in
-            evolving and benefitting from the project.
+            The project has completely fulfilled the requirements of the
+            targeted beneficiaries (and even gone beyond). An eco-system has
+            evolved around Virtual Labs, where the community has become involved
+            in evolving and benefitting from the project.
           </p>
         </>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 5,
@@ -146,23 +170,27 @@ const FAQPage: React.FC = () => {
       answer: (
         <p>
           All Virtual Labs can be accessed through a common website:
-          <a href="https://www.vlabs.ac.in" className={`ml-1 ${isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}`}>
+          <a
+            href="https://www.vlabs.ac.in"
+            className={`ml-1 ${
+              isDarkMode
+                ? "text-blue-400 hover:underline"
+                : "text-blue-600 hover:underline"
+            }`}
+          >
             www.vlabs.ac.in
-          </a>.
-          At the user end, a PC and broadband connectivity enables the user to access Virtual Labs.
+          </a>
+          . At the user end, a PC and broadband connectivity enables the user to
+          access Virtual Labs.
         </p>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 6,
       question: "Is it free to use?",
-      answer: (
-        <p>
-          Yes, it is free of cost to the user.
-        </p>
-      ),
-      category: "general"
+      answer: <p>Yes, it is free of cost to the user.</p>,
+      category: "general",
     },
     {
       id: 7,
@@ -178,35 +206,43 @@ const FAQPage: React.FC = () => {
             <li>Internet connection (2-4 mbps)</li>
             <li>JavaScript should be enabled on the browser</li>
             <li>Plugins: Flash, Java 1.6 version, and IcedTea</li>
-            <li>Faculty from electronics department may be needed while running some of the adders, multiplexers experiments.</li>
+            <li>
+              Faculty from electronics department may be needed while running
+              some of the adders, multiplexers experiments.
+            </li>
           </ol>
         </>
       ),
-      category: "technical"
+      category: "technical",
     },
     {
       id: 8,
-      question: "Our college internet network has firewalls. Should any specific care be taken?",
+      question:
+        "Our college internet network has firewalls. Should any specific care be taken?",
       answer: (
         <p>
-          If Internet network operates behind a firewall, the communication ports to facilitate VLab network
-          traffic should be open. Specifically ports 3306, 5900, 5902, and 8700 will need to be opened.
+          If Internet network operates behind a firewall, the communication
+          ports to facilitate VLab network traffic should be open. Specifically
+          ports 3306, 5900, 5902, and 8700 will need to be opened.
         </p>
       ),
-      category: "technical"
+      category: "technical",
     },
     {
       id: 9,
-      question: "Does the Virtual Lab provide the LMS that the objectives mention?",
+      question:
+        "Does the Virtual Lab provide the LMS that the objectives mention?",
       answer: (
         <p>
-          Virtual Lab project provides a complete Leaning Management System. For most users, Virtual Lab
-          provides all the relevant material at one place including the Objectives of the Experiment,
-          Procedure, Lab manual, Pre- and Post-experiment quizzes, additional Lab resources, in addition
-          to the Virtual Lab experiment. Most labs also have an associated question bank.
+          Virtual Lab project provides a complete Leaning Management System. For
+          most users, Virtual Lab provides all the relevant material at one
+          place including the Objectives of the Experiment, Procedure, Lab
+          manual, Pre- and Post-experiment quizzes, additional Lab resources, in
+          addition to the Virtual Lab experiment. Most labs also have an
+          associated question bank.
         </p>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 10,
@@ -214,85 +250,116 @@ const FAQPage: React.FC = () => {
       answer: (
         <>
           <p className="mb-4">
-            As mentioned earlier, Virtual Labs are divided into two categories: simulation based labs and
-            remote triggered labs. Registration requirements are different for the two categories.
+            As mentioned earlier, Virtual Labs are divided into two categories:
+            simulation based labs and remote triggered labs. Registration
+            requirements are different for the two categories.
           </p>
           <ul className="list-disc ml-5 space-y-2">
             <li>
-              <strong>Simulation based Labs:</strong> All labs can be directly accessed by following the lab links on the web page.
+              <strong>Simulation based Labs:</strong> All labs can be directly
+              accessed by following the lab links on the web page.
             </li>
             <li>
-              <strong>Remote Triggered Labs:</strong> To access a remote triggered lab, a user has to book a slot.
-              For booking a slot, you have to register yourself first and then book a slot from the slot chart.
-              All the available /booked slots can be viewed on this chart. Once a request for slot-booking is
-              made, all the information regarding the user id, password and the slot booked will be sent to the
-              user's email address provided by the user at the time of registration. Once registered, a user
-              can login using the same credentials every time. This registration has to be done by the user
-              separately for each of the remote triggered virtual labs.
+              <strong>Remote Triggered Labs:</strong> To access a remote
+              triggered lab, a user has to book a slot. For booking a slot, you
+              have to register yourself first and then book a slot from the slot
+              chart. All the available /booked slots can be viewed on this
+              chart. Once a request for slot-booking is made, all the
+              information regarding the user id, password and the slot booked
+              will be sent to the user's email address provided by the user at
+              the time of registration. Once registered, a user can login using
+              the same credentials every time. This registration has to be done
+              by the user separately for each of the remote triggered virtual
+              labs.
             </li>
           </ul>
         </>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 11,
-      question: "I already have a Physical Lab in my college/institute. What benefit will Virtual Lab provide?",
+      question:
+        "I already have a Physical Lab in my college/institute. What benefit will Virtual Lab provide?",
       answer: (
         <p>
-          Virtual Lab is a complete Learning Management System. All the relevant information including the theory,
-          lab-manual, additional web-resources, video-lectures, animated demonstrations and self-evaluation are
-          available at a common place. Virtual Labs can be used in a complementary fashion to augment the efficacy
-          of theory-based lectures. Small projects can also be carried out using some of the Virtual Labs.
-          Virtual Labs can be effectively used to give lab-demonstrations to large classes.
+          Virtual Lab is a complete Learning Management System. All the relevant
+          information including the theory, lab-manual, additional
+          web-resources, video-lectures, animated demonstrations and
+          self-evaluation are available at a common place. Virtual Labs can be
+          used in a complementary fashion to augment the efficacy of
+          theory-based lectures. Small projects can also be carried out using
+          some of the Virtual Labs. Virtual Labs can be effectively used to give
+          lab-demonstrations to large classes.
         </p>
       ),
-      category: "educators"
+      category: "educators",
     },
     {
       id: 12,
       question: "How does one derive the maximum benefit from Virtual Labs?",
       answer: (
         <p>
-          In order to derive maximum learning experience, the users are advised to first read all the instructions
-          for conducting the labs. There are 'step-by-step' instructions available in each lab to assist the users.
+          In order to derive maximum learning experience, the users are advised
+          to first read all the instructions for conducting the labs. There are
+          'step-by-step' instructions available in each lab to assist the users.
         </p>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 13,
-      question: "When I do an experiment how do I know if the experiment I did is done correctly?",
+      question:
+        "When I do an experiment how do I know if the experiment I did is done correctly?",
       answer: (
         <>
           <p className="mb-4">
-            Virtual Labs will provide to the students the result of an experiment by one of the following
-            methods (or possibly a combination):
+            Virtual Labs will provide to the students the result of an
+            experiment by one of the following methods (or possibly a
+            combination):
           </p>
           <ol className="list-decimal ml-5 space-y-2">
-            <li>Modelling the physical phenomenon by a set of equations and carrying out simulations to
-              yield the result of the particular experiment.</li>
-            <li>Providing a corresponding measurement data for the Virtual Lab experiment based
-              previously carried out measurements on an actual system.</li>
-            <li>Remotely triggering an experiment in an actual lab and providing the student the
-              result of the experiment through the computer interface.</li>
+            <li>
+              Modelling the physical phenomenon by a set of equations and
+              carrying out simulations to yield the result of the particular
+              experiment.
+            </li>
+            <li>
+              Providing a corresponding measurement data for the Virtual Lab
+              experiment based previously carried out measurements on an actual
+              system.
+            </li>
+            <li>
+              Remotely triggering an experiment in an actual lab and providing
+              the student the result of the experiment through the computer
+              interface.
+            </li>
           </ol>
         </>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 14,
       question: "How can a college conduct a Virtual Lab Workshop?",
       answer: (
         <p>
-          For details on conducting a Virtual Lab Workshop at your institution, please visit our
-          <a href="/outreach/" className={`ml-1 ${isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}`}>
+          For details on conducting a Virtual Lab Workshop at your institution,
+          please visit our
+          <a
+            href="/outreach/"
+            className={`ml-1 ${
+              isDarkMode
+                ? "text-blue-400 hover:underline"
+                : "text-blue-600 hover:underline"
+            }`}
+          >
             Outreach page
-          </a>.
+          </a>
+          .
         </p>
       ),
-      category: "workshops"
+      category: "workshops",
     },
     {
       id: 15,
@@ -300,12 +367,20 @@ const FAQPage: React.FC = () => {
       answer: (
         <p>
           You can email your concerns/queries to the Virtual Labs team at
-          <a href="mailto:support@vlabs.ac.in" className={`ml-1 ${isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}`}>
+          <a
+            href="mailto:support@vlabs.ac.in"
+            className={`ml-1 ${
+              isDarkMode
+                ? "text-blue-400 hover:underline"
+                : "text-blue-600 hover:underline"
+            }`}
+          >
             support@vlabs.ac.in
-          </a>.
+          </a>
+          .
         </p>
       ),
-      category: "technical"
+      category: "technical",
     },
     {
       id: 16,
@@ -313,28 +388,44 @@ const FAQPage: React.FC = () => {
       answer: (
         <p>
           Drop a mail to
-          <a href="mailto:support@vlabs.ac.in" className={`ml-1 ${isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}`}>
+          <a
+            href="mailto:support@vlabs.ac.in"
+            className={`ml-1 ${
+              isDarkMode
+                ? "text-blue-400 hover:underline"
+                : "text-blue-600 hover:underline"
+            }`}
+          >
             support@vlabs.ac.in
           </a>
           with Questions (and Answers).
         </p>
       ),
-      category: "general"
+      category: "general",
     },
     {
       id: 17,
       question: "How can I contribute to Virtual Labs?",
       answer: (
         <p>
-          vlabs-dev is the main portal for Virtual Labs Development. Please visit the contributing section
-          of the vlabs-dev portal. For more information, you can also contact us at
-          <a href="mailto:support@vlabs.ac.in" className={`ml-1 ${isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}`}>
+          vlabs-dev is the main portal for Virtual Labs Development. Please
+          visit the contributing section of the vlabs-dev portal. For more
+          information, you can also contact us at
+          <a
+            href="mailto:support@vlabs.ac.in"
+            className={`ml-1 ${
+              isDarkMode
+                ? "text-blue-400 hover:underline"
+                : "text-blue-600 hover:underline"
+            }`}
+          >
             support@vlabs.ac.in
-          </a>.
+          </a>
+          .
         </p>
       ),
-      category: "development"
-    }
+      category: "development",
+    },
   ];
 
   // Toggle FAQ expansion
@@ -366,9 +457,11 @@ const FAQPage: React.FC = () => {
       return;
     }
 
-    const filteredResults = faqData.filter((faq) =>
-      faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (typeof faq.answer === 'string' && faq.answer.toLowerCase().includes(searchQuery.toLowerCase()))
+    const filteredResults = faqData.filter(
+      (faq) =>
+        faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (typeof faq.answer === "string" &&
+          faq.answer.toLowerCase().includes(searchQuery.toLowerCase()))
     );
 
     setSearchResults(filteredResults);
@@ -380,8 +473,9 @@ const FAQPage: React.FC = () => {
 
   return (
     <div
-      className={`min-h-screen ${isDarkMode ? "bg-gray-950 text-gray-100" : "bg-gray-50 text-gray-900"
-        } transition-colors duration-200`}
+      className={`min-h-screen ${
+        isDarkMode ? "bg-gray-950 text-gray-100" : "bg-gray-50 text-gray-900"
+      } transition-colors duration-200`}
     >
       {/* Navigation Bar */}
       <Navbar
@@ -392,14 +486,27 @@ const FAQPage: React.FC = () => {
       />
 
       {/* Breadcrumb */}
-      <div className={`border-b pt-20 ${isDarkMode ? "border-gray-800" : "border-gray-200"}`}>
+      <div
+        className={`border-b pt-20 ${
+          isDarkMode ? "border-gray-800" : "border-gray-200"
+        }`}
+      >
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center text-sm">
-            <a href="/" className={`${isDarkMode ? "text-blue-400" : "text-blue-600"} hover:underline`}>
+            <a
+              href="/"
+              className={`${
+                isDarkMode ? "text-blue-400" : "text-blue-600"
+              } hover:underline`}
+            >
               Home
             </a>
             <ChevronRight size={16} className="mx-2 text-gray-500" />
-            <span className={`${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>FAQ</span>
+            <span
+              className={`${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+            >
+              FAQ
+            </span>
           </div>
         </div>
       </div>
@@ -414,10 +521,11 @@ const FAQPage: React.FC = () => {
           className="rounded-3xl overflow-hidden shadow-xl relative mb-16"
         >
           <div
-            className={`${isDarkMode
+            className={`${
+              isDarkMode
                 ? "bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900"
                 : "bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-600"
-              } text-white`}
+            } text-white`}
           >
             <div className="absolute inset-0 overflow-hidden">
               <svg
@@ -437,8 +545,8 @@ const FAQPage: React.FC = () => {
                 Frequently Asked Questions
               </h1>
               <p className="text-lg md:text-xl leading-relaxed text-gray-100 max-w-3xl mx-auto mb-8">
-                Find answers to the most common questions about Virtual Labs, our experiments,
-                workshops, and technical support.
+                Find answers to the most common questions about Virtual Labs,
+                our experiments, workshops, and technical support.
               </p>
 
               {/* Search bar */}
@@ -448,10 +556,11 @@ const FAQPage: React.FC = () => {
                   placeholder="Search questions..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className={`rounded-full py-3 px-6 pl-12 w-full outline-none focus:ring-2 shadow-lg ${isDarkMode
+                  className={`rounded-full py-3 px-6 pl-12 w-full outline-none focus:ring-2 shadow-lg ${
+                    isDarkMode
                       ? "bg-gray-800/80 text-white focus:ring-blue-600 border border-gray-700"
                       : "bg-white/90 text-gray-800 focus:ring-blue-400"
-                    } transition-all`}
+                  } transition-all`}
                 />
                 <Search
                   size={20}
@@ -474,23 +583,30 @@ const FAQPage: React.FC = () => {
           {/* Category Sidebar */}
           <div className="md:w-1/4">
             <div
-              className={`rounded-xl shadow-lg p-5 sticky top-24 ${isDarkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
-                }`}
+              className={`rounded-xl shadow-lg p-5 sticky top-24 ${
+                isDarkMode
+                  ? "bg-gray-800 border border-gray-700"
+                  : "bg-white border border-gray-200"
+              }`}
             >
               <h2 className="text-xl font-semibold mb-4">Categories</h2>
               <div className="space-y-2">
                 {categories.map((category) => (
                   <button
                     key={category.id}
-                    onClick={() => { setSelectedCategory(category.id); setSearchQuery(""); }}
-                    className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${selectedCategory === category.id
+                    onClick={() => {
+                      setSelectedCategory(category.id);
+                      setSearchQuery("");
+                    }}
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
+                      selectedCategory === category.id
                         ? isDarkMode
                           ? "bg-blue-900/40 text-blue-300"
                           : "bg-blue-50 text-blue-700"
                         : isDarkMode
-                          ? "hover:bg-gray-700 text-gray-300"
-                          : "hover:bg-gray-100 text-gray-600"
-                      }`}
+                        ? "hover:bg-gray-700 text-gray-300"
+                        : "hover:bg-gray-100 text-gray-600"
+                    }`}
                   >
                     {category.name}
                   </button>
@@ -503,7 +619,11 @@ const FAQPage: React.FC = () => {
           <div className="md:w-3/4">
             {searchQuery && (
               <div className="mb-6">
-                <p className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
+                <p
+                  className={`text-lg ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   {searchResults.length} results for "{searchQuery}"
                 </p>
               </div>
@@ -511,18 +631,26 @@ const FAQPage: React.FC = () => {
 
             {!searchQuery && (
               <h2 className="text-2xl font-bold mb-6">
-                {categories.find(c => c.id === selectedCategory)?.name}
+                {categories.find((c) => c.id === selectedCategory)?.name}
               </h2>
             )}
 
             {filteredFAQs.length === 0 ? (
               <div
-                className={`rounded-xl p-8 text-center ${isDarkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
-                  } shadow-lg`}
+                className={`rounded-xl p-8 text-center ${
+                  isDarkMode
+                    ? "bg-gray-800 border border-gray-700"
+                    : "bg-white border border-gray-200"
+                } shadow-lg`}
               >
                 <h3 className="text-xl font-semibold mb-2">No results found</h3>
-                <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
-                  We couldn't find any FAQs matching your search. Please try a different query.
+                <p
+                  className={`${
+                    isDarkMode ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
+                  We couldn't find any FAQs matching your search. Please try a
+                  different query.
                 </p>
               </div>
             ) : (
@@ -533,28 +661,52 @@ const FAQPage: React.FC = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`rounded-xl shadow-md overflow-hidden ${isDarkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"
-                      }`}
+                    className={`rounded-xl shadow-md overflow-hidden ${
+                      isDarkMode
+                        ? "bg-gray-800 border border-gray-700"
+                        : "bg-white border border-gray-100"
+                    }`}
                   >
                     <button
                       onClick={() => toggleFAQ(faq.id)}
-                      className={`w-full text-left p-6 flex justify-between items-center transition-colors ${expandedFAQs.includes(faq.id)
+                      className={`w-full text-left p-6 flex justify-between items-center transition-colors ${
+                        expandedFAQs.includes(faq.id)
                           ? isDarkMode
                             ? "bg-gray-700"
                             : "bg-gray-50"
                           : ""
-                        }`}
+                      }`}
                     >
-                      <h3 className="text-lg font-semibold pr-8">{faq.question}</h3>
+                      <h3 className="text-lg font-semibold pr-8">
+                        {faq.question}
+                      </h3>
                       {expandedFAQs.includes(faq.id) ? (
-                        <Minus size={20} className={`flex-shrink-0 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`} />
+                        <Minus
+                          size={20}
+                          className={`flex-shrink-0 ${
+                            isDarkMode ? "text-gray-400" : "text-gray-500"
+                          }`}
+                        />
                       ) : (
-                        <Plus size={20} className={`flex-shrink-0 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`} />
+                        <Plus
+                          size={20}
+                          className={`flex-shrink-0 ${
+                            isDarkMode ? "text-gray-400" : "text-gray-500"
+                          }`}
+                        />
                       )}
                     </button>
                     {expandedFAQs.includes(faq.id) && (
-                      <div className={`p-6 pt-0 border-t ${isDarkMode ? "border-gray-700" : "border-gray-100"}`}>
-                        <div className={`mt-4 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
+                      <div
+                        className={`p-6 pt-0 border-t ${
+                          isDarkMode ? "border-gray-700" : "border-gray-100"
+                        }`}
+                      >
+                        <div
+                          className={`mt-4 ${
+                            isDarkMode ? "text-gray-300" : "text-gray-600"
+                          }`}
+                        >
                           {faq.answer}
                         </div>
                       </div>
@@ -568,22 +720,38 @@ const FAQPage: React.FC = () => {
 
         {/* Still have questions section */}
         <div
-          className={`mt-16 rounded-xl p-8 text-center ${isDarkMode ? "bg-gray-800 border border-gray-700" : "bg-gray-100 border border-gray-200"
-            }`}
+          className={`mt-16 rounded-xl p-8 text-center ${
+            isDarkMode
+              ? "bg-gray-800 border border-gray-700"
+              : "bg-gray-100 border border-gray-200"
+          }`}
         >
           <h2 className="text-2xl font-bold mb-4">Still have questions?</h2>
           <p className="max-w-2xl mx-auto mb-6">
-            Can't find the answer you're looking for? Please reach out to our support team.
+            Can't find the answer you're looking for? Please reach out to our
+            support team.
           </p>
           <a
             href="mailto:support@vlabs.ac.in"
-            className={`px-6 py-3 rounded-full font-medium inline-flex items-center transition-colors ${isDarkMode
+            className={`px-6 py-3 rounded-full font-medium inline-flex items-center transition-colors ${
+              isDarkMode
                 ? "bg-blue-700 text-white hover:bg-blue-600"
                 : "bg-blue-600 text-white hover:bg-blue-700"
-              }`}
+            }`}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
             </svg>
             Contact Support
           </a>
