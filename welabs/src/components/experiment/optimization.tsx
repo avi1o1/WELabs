@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Highlight as PrismHighlight } from "prism-react-renderer";
+import { Highlight } from "prism-react-renderer";
 
 const OptimizationVisualizer = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const [array, setArray] = useState([5, 3, 8, 4, 2, 7]);
@@ -866,7 +866,7 @@ const OptimizationContent = ({ isDarkMode = false }) => {
             >
               optimizedBubbleSort.js
             </div>
-            <PrismHighlight
+            <Highlight
               code={`function optimizedBubbleSort(arr) {
   let n = arr.length;
   let swapped;
@@ -911,7 +911,7 @@ const OptimizationContent = ({ isDarkMode = false }) => {
                   ))}
                 </pre>
               )}
-            </PrismHighlight>
+            </Highlight>
           </div>
 
           <div

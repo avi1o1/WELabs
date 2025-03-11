@@ -17,6 +17,7 @@ import PretestContent from "@/components/experiment/pre-test";
 import CodeAssessmentContent from "@/components/experiment/code-assessment";
 import PracticeContent from "@/components/experiment/practice";
 import OptimizationContent from "@/components/experiment/optimization";
+import StabilityContent from "@/components/experiment/stability";
 
 const ExperimentPage: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -26,26 +27,26 @@ const ExperimentPage: React.FC = () => {
   // Use system preference for initial theme
   useEffect(() => {
     // Check localStorage first for saved preference
-    const savedTheme = localStorage.getItem('theme');
-    
+    const savedTheme = localStorage.getItem("theme");
+
     if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
+      setIsDarkMode(savedTheme === "dark");
     } else if (
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
       // Fall back to system preference only if no saved preference
       setIsDarkMode(true);
-      localStorage.setItem('theme', 'dark');
+      localStorage.setItem("theme", "dark");
     } else {
-      localStorage.setItem('theme', 'light');
+      localStorage.setItem("theme", "light");
     }
   }, []);
-  
+
   const toggleTheme = () => {
     const newTheme = !isDarkMode;
     setIsDarkMode(newTheme);
-    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
   };
 
   // Side navigation menu categories and items
@@ -377,173 +378,9 @@ const ExperimentPage: React.FC = () => {
         </div>
       ),
     },
-        stability: {
+    stability: {
       title: "Stability of Bubble Sort",
-      content: (
-        <div className="space-y-6">
-          <h1 className="text-3xl font-bold mb-6">Stability of Bubble Sort</h1>
-    
-          <div className="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
-            <h2 className="text-2xl font-semibold mb-4">What is Algorithm Stability?</h2>
-            <p className="mb-4">
-              A sorting algorithm is called <span className="font-semibold">stable</span> if it preserves the relative order of equal elements in the sorted output as they appeared in the original input array.
-            </p>
-            <div className="bg-blue-50 p-4 rounded-md">
-              <p className="font-medium">
-                In simpler terms: If two elements have equal sorting keys, their order in the sorted output should be the same as their order in the original array.
-              </p>
-            </div>
-          </div>
-    
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Is Bubble Sort Stable?</h2>
-            <div className="flex justify-center mb-6">
-              <div className="bg-green-100 px-6 py-4 rounded-lg border border-green-300 text-center">
-                <p className="text-2xl font-bold text-green-800">YES</p>
-                <p>Bubble Sort is a stable sorting algorithm</p>
-              </div>
-            </div>
-            <p>
-              Bubble Sort compares adjacent elements and swaps them only when the left element is greater than the right element. This means equal elements are never swapped, maintaining their original relative order.
-            </p>
-          </div>
-    
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Visual Demonstration of Stability</h2>
-            
-            <div className="flex flex-col md:flex-row md:space-x-8 mb-6">
-              <div className="flex-1 mb-4 md:mb-0">
-                <h3 className="text-lg font-medium mb-2">Original Array:</h3>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <div className="px-4 py-2 bg-blue-100 rounded border border-blue-300 text-center">
-                    <span className="font-bold">3</span><sub>a</sub>
-                  </div>
-                  <div className="px-4 py-2 bg-blue-100 rounded border border-blue-300 text-center">
-                    <span className="font-bold">1</span><sub>b</sub>
-                  </div>
-                  <div className="px-4 py-2 bg-blue-100 rounded border border-blue-300 text-center">
-                    <span className="font-bold">2</span><sub>c</sub>
-                  </div>
-                  <div className="px-4 py-2 bg-blue-100 rounded border border-blue-300 text-center">
-                    <span className="font-bold">3</span><sub>d</sub>
-                  </div>
-                  <div className="px-4 py-2 bg-blue-100 rounded border border-blue-300 text-center">
-                    <span className="font-bold">2</span><sub>e</sub>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-600">
-                  Each element has a key (the number) and a value (the subscript letter).
-                  We are sorting based on the key.
-                </p>
-              </div>
-              
-              <div className="flex-1">
-                <h3 className="text-lg font-medium mb-2">Sorted Array:</h3>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <div className="px-4 py-2 bg-green-100 rounded border border-green-300 text-center">
-                    <span className="font-bold">1</span><sub>b</sub>
-                  </div>
-                  <div className="px-4 py-2 bg-green-100 rounded border border-green-300 text-center">
-                    <span className="font-bold">2</span><sub>c</sub>
-                  </div>
-                  <div className="px-4 py-2 bg-green-100 rounded border border-green-300 text-center">
-                    <span className="font-bold">2</span><sub>e</sub>
-                  </div>
-                  <div className="px-4 py-2 bg-green-100 rounded border border-green-300 text-center">
-                    <span className="font-bold">3</span><sub>a</sub>
-                  </div>
-                  <div className="px-4 py-2 bg-green-100 rounded border border-green-300 text-center">
-                    <span className="font-bold">3</span><sub>d</sub>
-                  </div>
-                </div>
-                <div className="text-sm text-gray-600">
-                  Notice that the order of equal keys is preserved:
-                  <ul className="list-disc ml-5 mt-1">
-                    <li><span className="font-bold">2<sub>c</sub></span> comes before <span className="font-bold">2<sub>e</sub></span></li>
-                    <li><span className="font-bold">3<sub>a</sub></span> comes before <span className="font-bold">3<sub>d</sub></span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-    
-            <div className="bg-amber-50 p-4 rounded-md">
-              <h3 className="text-lg font-medium mb-2">How Bubble Sort Maintains Stability</h3>
-              <p className="mb-2">
-                During the bubble sort process, adjacent elements are compared and swapped only if they are out of order:
-              </p>
-              <pre className="bg-gray-100 p-3 rounded">
-                <code>if (arr[j] > arr[j+1]) {'{'} // Only swap if left element is greater
-      swap(arr[j], arr[j+1]);
-    {'}'}</code>
-              </pre>
-              <p className="mt-3">
-                Since equal elements are never swapped (arr[j] > arr[j+1] is false when arr[j] = arr[j+1]), 
-                they maintain their original relative positions in the final sorted array.
-              </p>
-            </div>
-          </div>
-    
-          <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex-1 bg-blue-50 p-6 rounded-lg border border-blue-100">
-              <h3 className="text-lg font-medium mb-3">Why Stability Matters</h3>
-              <p className="mb-3">
-                Stability is important in many real-world applications where data has multiple attributes:
-              </p>
-              <ul className="list-disc ml-6 space-y-2">
-                <li>
-                  <strong>Multi-level sorting:</strong> When sorting data by multiple criteria (e.g., sort employees by department, then by salary)
-                </li>
-                <li>
-                  <strong>Database operations:</strong> Maintaining consistency in query results when items have equal keys
-                </li>
-                <li>
-                  <strong>User interfaces:</strong> Keeping related items grouped together even after sorting
-                </li>
-              </ul>
-            </div>
-    
-            <div className="flex-1 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-              <h3 className="text-lg font-medium mb-3">Stability in Other Sorting Algorithms</h3>
-              <div className="overflow-x-auto">
-                <table className="min-w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-300 px-3 py-2">Algorithm</th>
-                      <th className="border border-gray-300 px-3 py-2">Stable?</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-300 px-3 py-2">Bubble Sort</td>
-                      <td className="border border-gray-300 px-3 py-2 text-center text-green-600">✓ Yes</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-300 px-3 py-2">Insertion Sort</td>
-                      <td className="border border-gray-300 px-3 py-2 text-center text-green-600">✓ Yes</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-3 py-2">Merge Sort</td>
-                      <td className="border border-gray-300 px-3 py-2 text-center text-green-600">✓ Yes</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-300 px-3 py-2">Selection Sort</td>
-                      <td className="border border-gray-300 px-3 py-2 text-center text-red-600">✗ No</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-3 py-2">Quick Sort</td>
-                      <td className="border border-gray-300 px-3 py-2 text-center text-red-600">✗ No</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-300 px-3 py-2">Heap Sort</td>
-                      <td className="border border-gray-300 px-3 py-2 text-center text-red-600">✗ No</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
+      content: <StabilityContent isDarkMode={isDarkMode} />,
     },
     comparison: {
       title: "Comparing Bubble Sort with Other Algorithms",
@@ -552,17 +389,22 @@ const ExperimentPage: React.FC = () => {
           <h1 className="text-3xl font-bold mb-6">
             Comparing Bubble Sort with Other Algorithms
           </h1>
-    
+
           <div className="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
             <h2 className="text-2xl font-semibold mb-4">Overview</h2>
             <p className="mb-4">
-              While Bubble Sort is simple to understand and implement, it's important to compare it with other sorting algorithms to understand when it might be appropriate to use and when other algorithms would be more efficient.
+              While Bubble Sort is simple to understand and implement, it's
+              important to compare it with other sorting algorithms to
+              understand when it might be appropriate to use and when other
+              algorithms would be more efficient.
             </p>
             <p>
-              The following comparisons analyze bubble sort against other common sorting algorithms across multiple parameters including time complexity, space complexity, stability, and practical use cases.
+              The following comparisons analyze bubble sort against other common
+              sorting algorithms across multiple parameters including time
+              complexity, space complexity, stability, and practical use cases.
             </p>
           </div>
-    
+
           <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">
               Graphical Comparison of Time Complexity
@@ -579,10 +421,11 @@ const ExperimentPage: React.FC = () => {
               sorting algorithms
             </p>
             <p className="italic text-gray-700">
-              Notice how Bubble Sort (red line) performs worse than other algorithms as the input size increases.
+              Notice how Bubble Sort (red line) performs worse than other
+              algorithms as the input size increases.
             </p>
           </div>
-    
+
           <div className="overflow-x-auto mb-8">
             <h2 className="text-2xl font-semibold mb-4">
               Time Complexity Comparison
@@ -590,65 +433,133 @@ const ExperimentPage: React.FC = () => {
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="border border-gray-300 px-4 py-3">Algorithm</th>
-                  <th className="border border-gray-300 px-4 py-3">Best Case</th>
-                  <th className="border border-gray-300 px-4 py-3">Average Case</th>
-                  <th className="border border-gray-300 px-4 py-3">Worst Case</th>
+                  <th className="border border-gray-300 px-4 py-3">
+                    Algorithm
+                  </th>
+                  <th className="border border-gray-300 px-4 py-3">
+                    Best Case
+                  </th>
+                  <th className="border border-gray-300 px-4 py-3">
+                    Average Case
+                  </th>
+                  <th className="border border-gray-300 px-4 py-3">
+                    Worst Case
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Bubble Sort</td>
-                  <td className="border border-gray-300 px-4 py-3">O(n) <span className="text-gray-500 text-sm">(optimized)</span></td>
-                  <td className="border border-gray-300 px-4 py-3 bg-red-50">O(n²)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-red-50">O(n²)</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Bubble Sort
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3">
+                    O(n){" "}
+                    <span className="text-gray-500 text-sm">(optimized)</span>
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-red-50">
+                    O(n²)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-red-50">
+                    O(n²)
+                  </td>
                 </tr>
                 <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Selection Sort</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-red-50">O(n²)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-red-50">O(n²)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-red-50">O(n²)</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Selection Sort
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-red-50">
+                    O(n²)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-red-50">
+                    O(n²)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-red-50">
+                    O(n²)
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Insertion Sort</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Insertion Sort
+                  </td>
                   <td className="border border-gray-300 px-4 py-3">O(n)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-red-50">O(n²)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-red-50">O(n²)</td>
+                  <td className="border border-gray-300 px-4 py-3 bg-red-50">
+                    O(n²)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-red-50">
+                    O(n²)
+                  </td>
                 </tr>
                 <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Merge Sort</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(n log n)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(n log n)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(n log n)</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Merge Sort
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(n log n)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(n log n)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(n log n)
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Quick Sort</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(n log n)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(n log n)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-red-50">O(n²)</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Quick Sort
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(n log n)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(n log n)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-red-50">
+                    O(n²)
+                  </td>
                 </tr>
                 <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Heap Sort</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(n log n)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(n log n)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(n log n)</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Heap Sort
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(n log n)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(n log n)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(n log n)
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Radix Sort</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(nk)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(nk)</td>
-                  <td className="border border-gray-300 px-4 py-3 bg-green-50">O(nk)</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Radix Sort
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(nk)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(nk)
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 bg-green-50">
+                    O(nk)
+                  </td>
                 </tr>
               </tbody>
             </table>
             <p className="text-sm mt-2 text-gray-600">
-              <span className="inline-block w-3 h-3 bg-red-50 mr-1 border border-gray-300"></span> Higher complexity (slower) 
-              <span className="inline-block w-3 h-3 bg-green-50 ml-4 mr-1 border border-gray-300"></span> Lower complexity (faster)
+              <span className="inline-block w-3 h-3 bg-red-50 mr-1 border border-gray-300"></span>{" "}
+              Higher complexity (slower)
+              <span className="inline-block w-3 h-3 bg-green-50 ml-4 mr-1 border border-gray-300"></span>{" "}
+              Lower complexity (faster)
               <br />
-              <span className="italic">n = input size, k = number of digits in largest number (for Radix Sort)</span>
+              <span className="italic">
+                n = input size, k = number of digits in largest number (for
+                Radix Sort)
+              </span>
             </p>
           </div>
-    
+
           <div className="overflow-x-auto mb-8">
             <h2 className="text-2xl font-semibold mb-4">
               Space Complexity and Other Properties
@@ -656,9 +567,15 @@ const ExperimentPage: React.FC = () => {
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="border border-gray-300 px-4 py-3">Algorithm</th>
-                  <th className="border border-gray-300 px-4 py-3">Space Complexity</th>
-                  <th className="border border-gray-300 px-4 py-3">Stability</th>
+                  <th className="border border-gray-300 px-4 py-3">
+                    Algorithm
+                  </th>
+                  <th className="border border-gray-300 px-4 py-3">
+                    Space Complexity
+                  </th>
+                  <th className="border border-gray-300 px-4 py-3">
+                    Stability
+                  </th>
                   <th className="border border-gray-300 px-4 py-3">In-Place</th>
                   <th className="border border-gray-300 px-4 py-3">Adaptive</th>
                   <th className="border border-gray-300 px-4 py-3">Online</th>
@@ -666,73 +583,149 @@ const ExperimentPage: React.FC = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Bubble Sort</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Bubble Sort
+                  </td>
                   <td className="border border-gray-300 px-4 py-3">O(1)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
                 </tr>
                 <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Selection Sort</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Selection Sort
+                  </td>
                   <td className="border border-gray-300 px-4 py-3">O(1)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Insertion Sort</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Insertion Sort
+                  </td>
                   <td className="border border-gray-300 px-4 py-3">O(1)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
                 </tr>
                 <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Merge Sort</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Merge Sort
+                  </td>
                   <td className="border border-gray-300 px-4 py-3">O(n)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Quick Sort</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Quick Sort
+                  </td>
                   <td className="border border-gray-300 px-4 py-3">O(log n)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
                 </tr>
                 <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-medium">Heap Sort</td>
+                  <td className="border border-gray-300 px-4 py-3 font-medium">
+                    Heap Sort
+                  </td>
                   <td className="border border-gray-300 px-4 py-3">O(1)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
-                  <td className="border border-gray-300 px-4 py-3 text-green-600">Yes</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
-                  <td className="border border-gray-300 px-4 py-3 text-red-600">No</td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-green-600">
+                    Yes
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-red-600">
+                    No
+                  </td>
                 </tr>
               </tbody>
             </table>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
               <div className="text-sm text-gray-700">
-                <p><strong>In-Place:</strong> Algorithm sorts the array without requiring significant extra space</p>
-                <p><strong>Stable:</strong> Preserves relative order of equal elements</p>
+                <p>
+                  <strong>In-Place:</strong> Algorithm sorts the array without
+                  requiring significant extra space
+                </p>
+                <p>
+                  <strong>Stable:</strong> Preserves relative order of equal
+                  elements
+                </p>
               </div>
               <div className="text-sm text-gray-700">
-                <p><strong>Adaptive:</strong> Takes advantage of existing order in its input</p>
-                <p><strong>Online:</strong> Can process its input piece-by-piece without having the entire input available from the start</p>
+                <p>
+                  <strong>Adaptive:</strong> Takes advantage of existing order
+                  in its input
+                </p>
+                <p>
+                  <strong>Online:</strong> Can process its input piece-by-piece
+                  without having the entire input available from the start
+                </p>
               </div>
             </div>
           </div>
-    
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-              <h2 className="text-xl font-semibold mb-4">Practical Performance</h2>
-              
+              <h2 className="text-xl font-semibold mb-4">
+                Practical Performance
+              </h2>
+
               <div className="mb-4">
-                <h3 className="text-lg font-medium mb-2">Average execution times (ms)</h3>
+                <h3 className="text-lg font-medium mb-2">
+                  Average execution times (ms)
+                </h3>
                 <div className="h-64 bg-gray-50 border border-gray-200 rounded-md p-2 mb-2 relative">
                   <div className="absolute inset-0 flex items-center justify-center text-gray-400">
                     Bar chart showing execution times for different algorithms
@@ -742,46 +735,72 @@ const ExperimentPage: React.FC = () => {
                   Measured on arrays of 10,000 random integers
                 </p>
               </div>
-              
+
               <div className="overflow-x-auto">
                 <table className="min-w-full border-collapse border border-gray-300">
                   <thead>
                     <tr className="bg-gray-100">
-                      <th className="border border-gray-300 px-3 py-2">Algorithm</th>
-                      <th className="border border-gray-300 px-3 py-2">1K elements</th>
-                      <th className="border border-gray-300 px-3 py-2">10K elements</th>
-                      <th className="border border-gray-300 px-3 py-2">100K elements</th>
+                      <th className="border border-gray-300 px-3 py-2">
+                        Algorithm
+                      </th>
+                      <th className="border border-gray-300 px-3 py-2">
+                        1K elements
+                      </th>
+                      <th className="border border-gray-300 px-3 py-2">
+                        10K elements
+                      </th>
+                      <th className="border border-gray-300 px-3 py-2">
+                        100K elements
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="border border-gray-300 px-3 py-2">Bubble Sort</td>
+                      <td className="border border-gray-300 px-3 py-2">
+                        Bubble Sort
+                      </td>
                       <td className="border border-gray-300 px-3 py-2">25ms</td>
-                      <td className="border border-gray-300 px-3 py-2">2,500ms</td>
-                      <td className="border border-gray-300 px-3 py-2">250,000ms</td>
+                      <td className="border border-gray-300 px-3 py-2">
+                        2,500ms
+                      </td>
+                      <td className="border border-gray-300 px-3 py-2">
+                        250,000ms
+                      </td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 px-3 py-2">Quick Sort</td>
-                      <td className="border border-gray-300 px-3 py-2">0.5ms</td>
+                      <td className="border border-gray-300 px-3 py-2">
+                        Quick Sort
+                      </td>
+                      <td className="border border-gray-300 px-3 py-2">
+                        0.5ms
+                      </td>
                       <td className="border border-gray-300 px-3 py-2">6ms</td>
                       <td className="border border-gray-300 px-3 py-2">80ms</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-300 px-3 py-2">Merge Sort</td>
+                      <td className="border border-gray-300 px-3 py-2">
+                        Merge Sort
+                      </td>
                       <td className="border border-gray-300 px-3 py-2">1ms</td>
                       <td className="border border-gray-300 px-3 py-2">12ms</td>
-                      <td className="border border-gray-300 px-3 py-2">150ms</td>
+                      <td className="border border-gray-300 px-3 py-2">
+                        150ms
+                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-            
+
             <div className="bg-amber-50 p-6 rounded-lg border border-amber-100">
-              <h2 className="text-xl font-semibold mb-4">When to Use Bubble Sort</h2>
-              
+              <h2 className="text-xl font-semibold mb-4">
+                When to Use Bubble Sort
+              </h2>
+
               <div className="mb-4">
-                <h3 className="text-lg font-medium mb-2 text-green-700">Advantages</h3>
+                <h3 className="text-lg font-medium mb-2 text-green-700">
+                  Advantages
+                </h3>
                 <ul className="list-disc ml-6 space-y-1">
                   <li>Simple implementation</li>
                   <li>Works well for very small datasets</li>
@@ -791,9 +810,11 @@ const ExperimentPage: React.FC = () => {
                   <li>Works well for arrays that are nearly sorted</li>
                 </ul>
               </div>
-              
+
               <div className="mb-4">
-                <h3 className="text-lg font-medium mb-2 text-red-700">Disadvantages</h3>
+                <h3 className="text-lg font-medium mb-2 text-red-700">
+                  Disadvantages
+                </h3>
                 <ul className="list-disc ml-6 space-y-1">
                   <li>Very inefficient for large datasets</li>
                   <li>O(n²) time complexity even with optimizations</li>
@@ -802,7 +823,7 @@ const ExperimentPage: React.FC = () => {
                   <li>Gets dramatically slower as input size increases</li>
                 </ul>
               </div>
-              
+
               <div className="p-4 bg-white rounded-md border border-amber-200 mt-4">
                 <h3 className="text-md font-medium mb-2">Best Use Cases</h3>
                 <ul className="list-disc ml-5 space-y-1 text-sm">
@@ -815,60 +836,108 @@ const ExperimentPage: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100">
-            <h2 className="text-xl font-semibold mb-4">Case Study: Algorithm Selection</h2>
-            
+            <h2 className="text-xl font-semibold mb-4">
+              Case Study: Algorithm Selection
+            </h2>
+
             <div className="overflow-x-auto">
               <table className="min-w-full border-collapse border border-gray-300">
                 <thead>
                   <tr className="bg-gray-100">
-                    <th className="border border-gray-300 px-3 py-2">Scenario</th>
-                    <th className="border border-gray-300 px-3 py-2">Best Algorithm</th>
-                    <th className="border border-gray-300 px-3 py-2">Is Bubble Sort Suitable?</th>
+                    <th className="border border-gray-300 px-3 py-2">
+                      Scenario
+                    </th>
+                    <th className="border border-gray-300 px-3 py-2">
+                      Best Algorithm
+                    </th>
+                    <th className="border border-gray-300 px-3 py-2">
+                      Is Bubble Sort Suitable?
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-gray-300 px-3 py-2">Large database of customer records</td>
-                    <td className="border border-gray-300 px-3 py-2">Merge Sort / Quick Sort</td>
-                    <td className="border border-gray-300 px-3 py-2 text-red-600">No - too slow</td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Large database of customer records
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Merge Sort / Quick Sort
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-red-600">
+                      No - too slow
+                    </td>
                   </tr>
                   <tr className="bg-gray-50">
-                    <td className="border border-gray-300 px-3 py-2">Nearly sorted array with few elements out of place</td>
-                    <td className="border border-gray-300 px-3 py-2">Insertion Sort</td>
-                    <td className="border border-gray-300 px-3 py-2 text-yellow-600">Maybe - if small size</td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Nearly sorted array with few elements out of place
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Insertion Sort
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-yellow-600">
+                      Maybe - if small size
+                    </td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-3 py-2">Real-time stream processing</td>
-                    <td className="border border-gray-300 px-3 py-2">Heap Sort / Insertion Sort</td>
-                    <td className="border border-gray-300 px-3 py-2 text-red-600">No - not online</td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Real-time stream processing
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Heap Sort / Insertion Sort
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-red-600">
+                      No - not online
+                    </td>
                   </tr>
                   <tr className="bg-gray-50">
-                    <td className="border border-gray-300 px-3 py-2">Educational exercise for beginners</td>
-                    <td className="border border-gray-300 px-3 py-2">Bubble Sort</td>
-                    <td className="border border-gray-300 px-3 py-2 text-green-600">Yes - simple to understand</td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Educational exercise for beginners
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Bubble Sort
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-green-600">
+                      Yes - simple to understand
+                    </td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-3 py-2">Embedded system with limited memory</td>
-                    <td className="border border-gray-300 px-3 py-2">Insertion Sort</td>
-                    <td className="border border-gray-300 px-3 py-2 text-yellow-600">Maybe - if array is small</td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Embedded system with limited memory
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      Insertion Sort
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-yellow-600">
+                      Maybe - if array is small
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          
+
           <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
             <h2 className="text-xl font-semibold mb-4">Summary</h2>
             <p className="mb-4">
-              Bubble Sort is one of the simplest sorting algorithms but also one of the least efficient for large datasets. Its quadratic time complexity makes it impractical for most real-world applications where data sizes exceed a few dozen elements.
+              Bubble Sort is one of the simplest sorting algorithms but also one
+              of the least efficient for large datasets. Its quadratic time
+              complexity makes it impractical for most real-world applications
+              where data sizes exceed a few dozen elements.
             </p>
             <p className="mb-4">
-              However, Bubble Sort does have some redeeming qualities: it's simple to implement and understand, it's stable, and it can be optimized to perform well on nearly-sorted data. This makes it valuable as an educational tool and occasionally useful in specific scenarios with very small or nearly-sorted datasets.
+              However, Bubble Sort does have some redeeming qualities: it's
+              simple to implement and understand, it's stable, and it can be
+              optimized to perform well on nearly-sorted data. This makes it
+              valuable as an educational tool and occasionally useful in
+              specific scenarios with very small or nearly-sorted datasets.
             </p>
             <p>
-              For most practical applications, algorithms like Quick Sort, Merge Sort, or even Insertion Sort would be better choices than Bubble Sort due to their superior time complexity and practical performance.
+              For most practical applications, algorithms like Quick Sort, Merge
+              Sort, or even Insertion Sort would be better choices than Bubble
+              Sort due to their superior time complexity and practical
+              performance.
             </p>
           </div>
         </div>
