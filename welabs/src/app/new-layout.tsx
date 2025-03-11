@@ -1,6 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { ThemeProvider } from "next-themes";
 
 export default function RootLayout({
   children,
@@ -18,9 +16,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="min-h-screen bg-background">
-            <Navbar />
             <main>{children}</main>
-            <Footer />
           </div>
         </ThemeProvider>
       </body>
