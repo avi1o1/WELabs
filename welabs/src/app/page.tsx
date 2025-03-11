@@ -13,32 +13,34 @@ const VLabsHomePage: React.FC = () => {
 
   // Use system preference for initial theme
   useEffect(() => {
-      // Check localStorage first for saved preference
-      const savedTheme = localStorage.getItem('theme');
-      
-      if (savedTheme) {
-        setIsDarkMode(savedTheme === 'dark');
-      } else if (
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-      ) {
-        // Fall back to system preference only if no saved preference
-        setIsDarkMode(true);
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-    }, []);
+    // Check localStorage first for saved preference
+    const savedTheme = localStorage.getItem('theme');
     
-    const toggleTheme = () => {
-      const newTheme = !isDarkMode;
-      setIsDarkMode(newTheme);
-      localStorage.setItem('theme', newTheme ? 'dark' : 'light');
-    };
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+    } else if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      // Fall back to system preference only if no saved preference
+      setIsDarkMode(true);
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+  }, []);
+  
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };  const navItems = [
+  };
+
+  const navItems = [
     {
       title: "About",
       dropdownItems: [
@@ -74,27 +76,28 @@ const VLabsHomePage: React.FC = () => {
       ],
     },
   ];
+
   // Data for activities cards
   const activities = [
     {
       title: "Development and Hosting",
       description:
         "Create and host virtual lab experiments using our platform.",
-      image: "/cards/development.webp",
-      link: "/development/",
+      image: "/images/development.png",
+      link: "/development",
     },
     {
       title: "Outreach",
       description: "Engage with the community and promote virtual learning.",
-      image: "/cards/outreach_2.jpg",
-      link: "/outreach/",
+      image: "/images/outreach.png",
+      link: "/outreach",
     },
     {
       title: "Research",
       description:
         "Explore cutting-edge virtual learning research initiatives.",
-      image: "/cards/research.webp",
-      link: "/research/",
+      image: "/images/research.png",
+      link: "/research",
     },
   ];
 
@@ -300,7 +303,7 @@ const VLabsHomePage: React.FC = () => {
               fill="currentColor"
             >
               <path
-                d="M37.9,-65.8C47.4,-58.6,52.5,-44.7,59.7,-31.9C66.9,-19,76.1,-7.1,77.4,5.8C78.7,18.8,72,32.8,62.3,43.1C52.5,53.5,39.8,60.1,26.5,64.3C13.3,68.5,-0.5,70.2,-14.7,68.5C-28.9,66.9,-43.5,61.9,-54.9,52.3C-66.2,42.7,-74.4,28.7,-77,13.5C-79.6,-1.7,-76.7,-17.9,-69.9,-32.2C-63.1,-46.5,-52.6,-58.8,-40,-65.2C-27.3,-71.6,-12.5,-72,1,-73.5C14.4,-75.1,28.3,-73,37.9,-65.8Z"
+                d="M37.9,-65.8C47.4,-58.6,52.5,-44.7,59.7,-31.9C66.9,-19,76.1,-7.1,77.4,5.8C78.7,18.8,72,32.8,62.3,43.1C52.5,53.5,39.8,60.1,26.5,64.3C13.3,68,-0.5,70.2,-14.7,68.5C-28.9,67.9,-44.5,65.4,-57.7,57.5C-70.8,49.7,-81.3,36.4,-85.6,21.4C-90,6.3,-88.3,-10.6,-81.4,-24.1C-74.5,-37.7,-62.6,-47.9,-49.3,-54.3C-36,-60.7,-21.5,-63.3,-7.8,-60.9C6,-58.5,25.1,-66.3,34.6,-59.3Z"
                 transform="translate(100 100)"
               />
             </svg>

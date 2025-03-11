@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sun, Moon, Menu, X, ArrowRight } from "lucide-react";
+import { Sun, Moon, Menu, X, ArrowRight, BookOpen, Database, Users, Info } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface NavbarProps {
@@ -17,40 +17,47 @@ const Navbar: React.FC<NavbarProps> = ({
   isMenuOpen,
   toggleMenu,
 }) => {
-  // Hardcoded navigation items
+  // Navigation items with Experiments as a regular nav item
   const navItems = [
     {
+      title: "Experiments",
+      link: "/experiments/",
+    },
+    {
       title: "About",
+      icon: <Info size={16} className="mr-2" />,
       dropdownItems: [
         { title: "Virtual Labs", link: "/Vlabs/" },
         { title: "VLEAD", link: "/vlead/" },
+        { title: "Our Mission", link: "/mission/" },
       ],
     },
     {
-      title: "I am",
+      title: "Resources",
+      icon: <Database size={16} className="mr-2" />,
       dropdownItems: [
-        { title: "a Learner", link: "/experiments/" },
-        { title: "a Facilitator", link: "/outreach/" },
-        { title: "a Creator", link: "/development/" },
+        { title: "Learning Materials", link: "/resources/" },
+        { title: "Create Experiment", link: "/development/#development-process" },
+        { title: "Research Papers", link: "/research/" },
+        { title: "Tutorials", link: "/tutorials/" },
       ],
     },
     {
-      title: "I want to",
+      title: "Community",
+      icon: <Users size={16} className="mr-2" />,
       dropdownItems: [
-        {
-          title: "Create Experiment",
-          link: "/development/#development-process",
-        },
-        { title: "Start Learning", link: "/experiments/" },
+        { title: "For Learners", link: "/community/learners/" },
+        { title: "For Educators", link: "/outreach/" },
         { title: "Host Workshop", link: "/outreach/#request-a-workshop" },
-        { title: "Explore Research", link: "/research/" },
+        { title: "Join Development", link: "/development/" },
       ],
     },
     {
       title: "Analytics",
+      icon: <Database size={16} className="mr-2" />,
       dropdownItems: [
-        { title: "Summary", link: "/summary/" },
-        { title: "Detailed Analysis", link: "/detailedAnalysis/" },
+        { title: "Usage Summary", link: "/summary/" },
+        { title: "Detailed Reports", link: "/detailedAnalysis/" },
       ],
     },
   ];
@@ -78,8 +85,21 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item, index) => (
+            <div className="hidden md:flex items-center space-x-6">
+              {/* Experiments Link (now a regular nav item) */}
+              <a
+                href="/experiments/"
+                className={`font-medium transition-colors ${
+                  isDarkMode
+                    ? "text-white hover:text-blue-300"
+                    : "text-gray-800 hover:text-blue-600"
+                }`}
+              >
+                Experiments
+              </a>
+
+              {/* Other nav items with dropdowns */}
+              {navItems.slice(1).map((item, index) => (
                 <div key={index} className="relative group">
                   <button className="flex items-center space-x-1 font-medium cursor-pointer">
                     <span>{item.title}</span>
@@ -106,7 +126,7 @@ const Navbar: React.FC<NavbarProps> = ({
                         : "bg-white border border-gray-100"
                     }`}
                   >
-                    {item.dropdownItems.map((dropItem, idx) => (
+                    {item.dropdownItems?.map((dropItem, idx) => (
                       <React.Fragment key={idx}>
                         <a
                           href={dropItem.link}
@@ -145,6 +165,17 @@ const Navbar: React.FC<NavbarProps> = ({
 
             {/* Mobile menu button */}
             <div className="md:hidden flex items-center space-x-3">
+              <a 
+                href="/experiments/"
+                className={`px-3 py-1.5 text-sm font-medium transition-colors ${
+                  isDarkMode 
+                    ? "text-white" 
+                    : "text-gray-800"
+                }`}
+              >
+                Experiments
+              </a>
+              
               <button
                 onClick={toggleTheme}
                 className={`p-2 rounded-full ${
@@ -185,22 +216,36 @@ const Navbar: React.FC<NavbarProps> = ({
         >
           <div className="container mx-auto px-4 pb-8">
             {/* Mobile nav items */}
-            <div className="space-y-8">
-              {navItems.map((item, index) => (
-                <div key={index} className="space-y-3">
-                  <h3 className="font-bold text-lg">{item.title}</h3>
-                  <div className="space-y-3 pl-3">
-                    {item.dropdownItems.map((dropItem, idx) => (
+            <div className="space-y-4">
+              <a
+                href="/experiments/"
+                className={`block py-3 text-lg font-medium border-b ${
+                  isDarkMode
+                    ? "text-white border-gray-800 hover:text-blue-300"
+                    : "text-gray-900 border-gray-100 hover:text-blue-600"
+                }`}
+              >
+                Experiments
+              </a>
+              
+              {navItems.slice(1).map((item, index) => (
+                <div key={index} className="py-2">
+                  <h3 className={`font-medium text-lg mb-2 ${
+                    isDarkMode ? "text-white" : "text-gray-900"
+                  }`}>
+                    {item.title}
+                  </h3>
+                  <div className="space-y-2 ml-4">
+                    {item.dropdownItems?.map((dropItem, idx) => (
                       <a
                         key={idx}
                         href={dropItem.link}
-                        className={`py-2 flex items-center transition-colors ${
+                        className={`block py-2 ${
                           isDarkMode
-                            ? "text-blue-400 hover:text-blue-300"
-                            : "text-blue-600 hover:text-blue-800"
+                            ? "text-gray-300 hover:text-blue-300"
+                            : "text-gray-700 hover:text-blue-600"
                         }`}
                       >
-                        <ArrowRight size={16} className="mr-2" />
                         {dropItem.title}
                       </a>
                     ))}
