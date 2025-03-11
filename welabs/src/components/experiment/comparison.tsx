@@ -974,11 +974,24 @@ const ComparisonContent = ({ isDarkMode = false }) => {
               } border ${isDarkMode ? "border-green-900" : "border-green-100"}`}
             >
               <h4
-                className={`font-semibold mb-3 ${
+                className={`font-semibold mb-3 flex items-center ${
                   isDarkMode ? "text-green-300" : "text-green-700"
                 }`}
               >
-                Advantages
+                <svg
+                  className="w-5 h-5 mr-2 inline"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span>Advantages</span>
               </h4>
               <ul className="space-y-2">
                 {[
@@ -1013,10 +1026,22 @@ const ComparisonContent = ({ isDarkMode = false }) => {
               } border ${isDarkMode ? "border-red-900" : "border-red-100"}`}
             >
               <h4
-                className={`font-semibold mb-3 ${
-                  isDarkMode ? "text-red-300" : "text-red-700"
-                }`}
+                className={`font-semibold mb-3 flex items-center ${isDarkMode ? "text-red-300" : "text-red-700"
+                  }`}
               >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
                 Disadvantages
               </h4>
               <ul className="space-y-2">
@@ -1043,52 +1068,76 @@ const ComparisonContent = ({ isDarkMode = false }) => {
                 ))}
               </ul>
             </div>
-
-            {/* Best Use Cases */}
-            <div
-              className={`p-4 rounded-lg ${
-                isDarkMode ? "bg-gray-900" : "bg-gray-50"
-              } border ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}
-            >
-              <h4
-                className={`font-semibold mb-3 ${
-                  isDarkMode ? "text-gray-200" : "text-gray-800"
-                }`}
-              >
-                Best Use Cases
-              </h4>
-              <div className="flex flex-col space-y-1">
-                {[
-                  "Educational environments to teach sorting fundamentals",
-                  "Very small arrays (less than 10-20 elements)",
-                  "Nearly sorted arrays where few elements are out of place",
-                  "When code simplicity is more important than performance",
-                  "Memory-constrained environments where O(1) space is required",
-                  "As a component in more complex algorithms in specific cases",
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-center py-1 px-2 rounded ${
-                      isDarkMode
-                        ? "bg-gray-800 text-gray-300"
-                        : "bg-white text-gray-700"
-                    }`}
-                  >
-                    <span
-                      className={`inline-flex items-center justify-center rounded-full h-5 w-5 text-xs mr-2 ${
-                        isDarkMode
-                          ? "bg-blue-900/30 text-blue-300"
-                          : "bg-blue-100 text-blue-700"
-                      }`}
-                    >
-                      {index + 1}
-                    </span>
-                    <span className="text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Best Use Cases */}
+      <div
+        className={`rounded-xl shadow-md p-6 border transition-all ${isDarkMode
+            ? "bg-gray-800 border-gray-700"
+            : "bg-white border-gray-100"
+          }`}
+      >
+        <div className="flex items-center mb-4">
+          <div
+            className={`p-2 rounded-lg ${isDarkMode ? "bg-blue-900/40" : "bg-blue-100"
+              }`}
+          >
+            <svg
+              className={`w-6 h-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+              />
+            </svg>
+          </div>
+          <h3
+            className={`text-xl font-bold ml-3 ${isDarkMode ? "text-gray-100" : "text-gray-800"
+              }`}
+          >
+            Best Use Cases
+          </h3>
+        </div>
+
+        <div
+          className={`p-5 rounded-lg ${isDarkMode ? "bg-gray-900" : "bg-gray-50"
+            } border ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}
+        >
+            <div className="flex flex-col space-y-1">
+              {[
+                "Educational environments to teach sorting fundamentals",
+                "Very small arrays (less than 10-20 elements)",
+                "Nearly sorted arrays where few elements are out of place",
+                "When code simplicity is more important than performance",
+                "Memory-constrained environments where O(1) space is required",
+                "As a component in more complex algorithms in specific cases",
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className={`flex items-center py-1 px-2 rounded ${isDarkMode
+                      ? "text-gray-300"
+                      : "text-gray-700"
+                    }`}
+                >
+                  <span
+                    className={`inline-flex items-center justify-center rounded-full h-5 w-5 text-sm mr-2 ${isDarkMode
+                        ? "bg-blue-900/30 text-blue-300"
+                        : "bg-blue-100 text-blue-700"
+                      }`}
+                  >
+                    {index + 1}
+                  </span>
+                  <span className="text-md">{item}</span>
+                </div>
+              ))}
+            </div>          
         </div>
       </div>
 

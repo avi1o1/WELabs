@@ -174,7 +174,7 @@ const PretestContent: React.FC<PretestProps> = ({ isDarkMode = false }) => {
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
           </svg>
         </div>
-        <h2 className="text-3xl font-extrabold mb-4">Pretest Assessment</h2>
+        <h2 className="text-3xl font-extrabold mb-4">Warm Up</h2>
         <p className="max-w-3xl text-lg">
           Test your initial knowledge about sorting algorithms and array
           operations. This will help establish your baseline understanding
@@ -232,7 +232,7 @@ const PretestContent: React.FC<PretestProps> = ({ isDarkMode = false }) => {
               setDifficulty("beginner");
               setScore(null); // reset score when switching
             }}
-            className={`px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center ${
+            className={`px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center cursor-pointer ${
               difficulty === "beginner"
                 ? isDarkMode
                   ? "bg-blue-600 text-white"
@@ -257,13 +257,13 @@ const PretestContent: React.FC<PretestProps> = ({ isDarkMode = false }) => {
             </svg>
             Beginner
           </button>
-
+          
           <button
             onClick={() => {
               setDifficulty("advanced");
               setScore(null);
             }}
-            className={`px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center ${
+            className={`px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center cursor-pointer ${
               difficulty === "advanced"
                 ? isDarkMode
                   ? "bg-purple-600 text-white"

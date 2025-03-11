@@ -191,11 +191,10 @@ const ComplexityContent: React.FC<ComplexityContentProps> = ({
             }`}
           >
             <h4
-              className={`font-semibold mb-3 ${
-                isDarkMode ? "text-gray-200" : "text-gray-800"
-              }`}
+              className={`font-semibold mb-2 ${isDarkMode ? "text-purple-400" : "text-purple-600"
+                }`}
             >
-              Auxiliary Space: O(1)
+              Best Case: O(1)
             </h4>
             <ul
               className={`space-y-2 text-sm ${

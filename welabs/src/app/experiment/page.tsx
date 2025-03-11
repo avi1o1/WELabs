@@ -11,7 +11,6 @@ import OverviewContent from "@/components/experiment/overview";
 import AlgorithmContent from "@/components/experiment/algorithm";
 import ReferencesContent from "@/components/experiment/references";
 import FurtherReadingsContent from "@/components/experiment/further-readings";
-import PostTestContent from "@/components/experiment/post-test";
 import FeedbackContent from "@/components/experiment/feedback";
 import PretestContent from "@/components/experiment/pre-test";
 import CodeAssessmentContent from "@/components/experiment/code-assessment";
@@ -20,6 +19,7 @@ import OptimizationContent from "@/components/experiment/optimization";
 import StabilityContent from "@/components/experiment/stability";
 import ComplexityContent from "@/components/experiment/complexity";
 import ComparisonContent from "@/components/experiment/comparison";
+import QuizContent from "@/components/experiment/quiz";
 
 const ExperimentPage: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -58,7 +58,7 @@ const ExperimentPage: React.FC = () => {
       items: [
         { id: "aim", title: "Aim" },
         { id: "overview", title: "Overview" },
-        { id: "pretest", title: "Pretest" },
+        { id: "warmup", title: "Warm Up" },
       ],
     },
     {
@@ -75,11 +75,8 @@ const ExperimentPage: React.FC = () => {
     {
       title: "Self-Assessment",
       items: [
-        { id: "optimized-practice", title: "Practice" },
-        { id: "optimized-exercise", title: "Exercise" },
         { id: "quiz", title: "Quiz" },
         { id: "code-assessment", title: "Code Assessment" },
-        { id: "post-test", title: "Posttest" },
       ],
     },
     {
@@ -114,8 +111,8 @@ const ExperimentPage: React.FC = () => {
       title: "Algorithm",
       content: <AlgorithmContent isDarkMode={isDarkMode} />,
     },
-    pretest: {
-      title: "Pretest",
+    warmup: {
+      title: "Warm Up",
       content: <PretestContent isDarkMode={isDarkMode} />,
     },
     practice: {
@@ -138,9 +135,9 @@ const ExperimentPage: React.FC = () => {
       title: "Comparing Bubble Sort with Other Algorithms",
       content: <ComparisonContent isDarkMode={isDarkMode} />,
     },
-    "post-test": {
-      title: "Post Test",
-      content: <PostTestContent isDarkMode={isDarkMode} />,
+    quiz: {
+      title: "Quiz",
+      content: <QuizContent isDarkMode={isDarkMode} />,
     },
     "code-assessment": {
       title: "Code Assessment",
