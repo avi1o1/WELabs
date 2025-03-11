@@ -15,16 +15,27 @@ const VLEADPage: React.FC = () => {
 
   // Use system preference for initial theme
   useEffect(() => {
-    if (
+    // Check localStorage first for saved preference
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+    } else if (
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
+      // Fall back to system preference only if no saved preference
       setIsDarkMode(true);
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
     }
   }, []);
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
   };
 
   const toggleMenu = () => {
@@ -69,9 +80,8 @@ const VLEADPage: React.FC = () => {
 
   return (
     <div
-      className={`min-h-screen ${
-        isDarkMode ? "bg-gray-950 text-gray-100" : "bg-gray-50 text-gray-900"
-      } transition-colors duration-200`}
+      className={`min-h-screen ${isDarkMode ? "bg-gray-950 text-gray-100" : "bg-gray-50 text-gray-900"
+        } transition-colors duration-200`}
     >
       {/* Navigation Bar */}
       <Navbar
@@ -91,11 +101,10 @@ const VLEADPage: React.FC = () => {
           className="rounded-3xl overflow-hidden shadow-xl relative"
         >
           <div
-            className={`${
-              isDarkMode
+            className={`${isDarkMode
                 ? "bg-gradient-to-br from-indigo-900 via-blue-900 to-teal-900"
                 : "bg-gradient-to-br from-indigo-600 via-blue-500 to-teal-500"
-            } text-white`}
+              } text-white`}
           >
             <div className="absolute inset-0 overflow-hidden">
               <svg
@@ -115,7 +124,7 @@ const VLEADPage: React.FC = () => {
                 Virtual Labs Engineering and Architecture Division
               </h1>
               <p className="text-lg md:text-xl leading-relaxed text-gray-100 max-w-3xl">
-                VLEAD is responsible for the design, development, and maintenance of the 
+                VLEAD is responsible for the design, development, and maintenance of the
                 Virtual Labs platform, creating sustainable ecosystems for virtual learning.
               </p>
             </div>
@@ -123,7 +132,7 @@ const VLEADPage: React.FC = () => {
         </motion.section>
 
         {/* Mission Section */}
-        <motion.section 
+        <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -131,16 +140,14 @@ const VLEADPage: React.FC = () => {
         >
           <div className="text-center space-y-4">
             <h2
-              className={`text-3xl md:text-4xl font-bold ${
-                isDarkMode ? "text-white" : "text-gray-900"
-              }`}
+              className={`text-3xl md:text-4xl font-bold ${isDarkMode ? "text-white" : "text-gray-900"
+                }`}
             >
               Our Mission
             </h2>
             <p
-              className={`text-lg ${
-                isDarkMode ? "text-gray-300" : "text-gray-600"
-              } max-w-2xl mx-auto`}
+              className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-600"
+                } max-w-2xl mx-auto`}
             >
               Creating sustainable ecosystems for remote lab access in education
             </p>
@@ -150,22 +157,20 @@ const VLEADPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className={`rounded-2xl p-8 ${
-              isDarkMode
+            className={`rounded-2xl p-8 ${isDarkMode
                 ? "bg-gray-800/50 border border-gray-700"
                 : "bg-white shadow-xl"
-            }`}
+              }`}
           >
             <p className={isDarkMode ? "text-gray-300" : "text-gray-700"}>
               To create a sustainable ecosystem for the development, deployment, and maintenance of
               virtual labs that provide students with remote access to laboratories in various disciplines
               of science and engineering.
             </p>
-            
+
             <div className="mt-8">
-              <h3 className={`text-xl font-semibold mb-4 ${
-                isDarkMode ? "text-white" : "text-gray-800"
-              }`}>
+              <h3 className={`text-xl font-semibold mb-4 ${isDarkMode ? "text-white" : "text-gray-800"
+                }`}>
                 Key Responsibilities
               </h3>
               <ul className="grid md:grid-cols-2 gap-3">
@@ -178,9 +183,8 @@ const VLEADPage: React.FC = () => {
                   "Conducting research to enhance the virtual lab experience"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
-                    <svg className={`w-5 h-5 mr-2 mt-1 ${
-                      isDarkMode ? "text-blue-400" : "text-blue-600"
-                    }`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className={`w-5 h-5 mr-2 mt-1 ${isDarkMode ? "text-blue-400" : "text-blue-600"
+                      }`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>{item}</span>
@@ -195,16 +199,14 @@ const VLEADPage: React.FC = () => {
         <section className="space-y-8">
           <div className="text-center space-y-4">
             <h2
-              className={`text-3xl md:text-4xl font-bold ${
-                isDarkMode ? "text-white" : "text-gray-900"
-              }`}
+              className={`text-3xl md:text-4xl font-bold ${isDarkMode ? "text-white" : "text-gray-900"
+                }`}
             >
               Available Resources
             </h2>
             <p
-              className={`text-lg ${
-                isDarkMode ? "text-gray-300" : "text-gray-600"
-              } max-w-2xl mx-auto`}
+              className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-600"
+                } max-w-2xl mx-auto`}
             >
               Tools and materials to support virtual lab development
             </p>
@@ -217,37 +219,33 @@ const VLEADPage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={`rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all ${
-                  isDarkMode
+                className={`rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all ${isDarkMode
                     ? "bg-gray-800/50 border border-gray-700"
                     : "bg-white"
-                }`}
+                  }`}
               >
                 <div className={`p-8 ${isDarkMode ? resource.color.split(" ")[1] : resource.color.split(" ")[0]}`}>
                   <div className="flex items-center mb-4">
                     {resource.icon}
                     <h3
-                      className={`text-xl font-semibold ml-2 ${
-                        isDarkMode ? "text-white" : "text-gray-900"
-                      }`}
+                      className={`text-xl font-semibold ml-2 ${isDarkMode ? "text-white" : "text-gray-900"
+                        }`}
                     >
                       {resource.title}
                     </h3>
                   </div>
                   <p
-                    className={`mb-4 ${
-                      isDarkMode ? "text-gray-300" : "text-gray-600"
-                    }`}
+                    className={`mb-4 ${isDarkMode ? "text-gray-300" : "text-gray-600"
+                      }`}
                   >
                     {resource.description}
                   </p>
                   <Link
                     href={resource.link}
-                    className={`inline-flex items-center font-medium transition-colors ${
-                      isDarkMode
+                    className={`inline-flex items-center font-medium transition-colors ${isDarkMode
                         ? "text-blue-400 hover:text-blue-300"
                         : "text-blue-600 hover:text-blue-800"
-                    }`}
+                      }`}
                   >
                     {resource.linkText} <ArrowRight size={16} className="ml-1" />
                   </Link>
@@ -262,11 +260,10 @@ const VLEADPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className={`rounded-2xl overflow-hidden ${
-            isDarkMode
+          className={`rounded-2xl overflow-hidden ${isDarkMode
               ? "bg-gray-800/50 border border-gray-700"
               : "bg-white shadow-xl"
-          }`}
+            }`}
         >
           <div className="p-8">
             <h2 className={`text-2xl font-bold mb-6 ${isDarkMode ? "text-white" : "text-gray-900"}`}>
@@ -275,43 +272,40 @@ const VLEADPage: React.FC = () => {
             <p className={isDarkMode ? "text-gray-300" : "text-gray-700"}>
               New to VLEAD? Here's how you can get started:
             </p>
-            
+
             <div className="mt-6 space-y-4">
               {[
-                { 
-                  text: "Browse our documentation to understand the platform", 
-                  link: "/documentation" 
+                {
+                  text: "Browse our documentation to understand the platform",
+                  link: "/documentation"
                 },
-                { 
-                  text: "Check out sample experiments to see what's possible", 
-                  link: "/experiments" 
+                {
+                  text: "Check out sample experiments to see what's possible",
+                  link: "/experiments"
                 },
-                { 
-                  text: "Set up your development environment", 
-                  link: "/development-environment" 
+                {
+                  text: "Set up your development environment",
+                  link: "/development-environment"
                 },
-                { 
-                  text: "Follow our step-by-step tutorial to create your first experiment", 
-                  link: "/tutorials" 
+                {
+                  text: "Follow our step-by-step tutorial to create your first experiment",
+                  link: "/tutorials"
                 }
               ].map((step, index) => (
-                <div 
+                <div
                   key={index}
-                  className={`flex items-center p-4 rounded-lg ${
-                    isDarkMode ? "bg-gray-700/50" : "bg-gray-50"
-                  }`}
+                  className={`flex items-center p-4 rounded-lg ${isDarkMode ? "bg-gray-700/50" : "bg-gray-50"
+                    }`}
                 >
-                  <div className={`h-8 w-8 rounded-full flex items-center justify-center mr-4 ${
-                    isDarkMode ? "bg-blue-900 text-blue-300" : "bg-blue-100 text-blue-600"
-                  }`}>
+                  <div className={`h-8 w-8 rounded-full flex items-center justify-center mr-4 ${isDarkMode ? "bg-blue-900 text-blue-300" : "bg-blue-100 text-blue-600"
+                    }`}>
                     {index + 1}
                   </div>
                   <div>
                     <p className={isDarkMode ? "text-gray-300" : "text-gray-700"}>
                       {step.text.split(" ").slice(0, -1).join(" ")} {" "}
-                      <Link href={step.link} className={`font-medium ${
-                        isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"
-                      }`}>
+                      <Link href={step.link} className={`font-medium ${isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"
+                        }`}>
                         {step.text.split(" ").pop()}
                       </Link>
                     </p>
@@ -327,11 +321,10 @@ const VLEADPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className={`rounded-3xl p-8 md:p-12 overflow-hidden relative ${
-            isDarkMode
+          className={`rounded-3xl p-8 md:p-12 overflow-hidden relative ${isDarkMode
               ? "bg-gradient-to-r from-blue-900 to-indigo-900 shadow-lg"
               : "bg-gradient-to-r from-blue-500 to-indigo-500 shadow-xl"
-          }`}
+            }`}
         >
           {/* Background patterns */}
           <div className="absolute inset-0 overflow-hidden">
@@ -352,12 +345,12 @@ const VLEADPage: React.FC = () => {
               Need Help?
             </h2>
             <p className="text-white text-lg mb-6">
-              If you have questions or need assistance, feel free to reach out to our team or 
+              If you have questions or need assistance, feel free to reach out to our team or
               join our weekly developer office hours.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a 
-                href="mailto:support@vlabs.ac.in" 
+              <a
+                href="mailto:support@vlabs.ac.in"
                 className="px-6 py-3 bg-white text-blue-700 hover:bg-gray-100 transition-colors rounded-lg font-medium"
               >
                 Email Support

@@ -53,16 +53,27 @@ const ExperimentsPage: React.FC = () => {
 
   // Use system preference for initial theme
   useEffect(() => {
-    if (
+    // Check localStorage first for saved preference
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+    } else if (
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
+      // Fall back to system preference only if no saved preference
       setIsDarkMode(true);
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
     }
   }, []);
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
   };
 
   const toggleMenu = () => {
@@ -310,9 +321,8 @@ const ExperimentsPage: React.FC = () => {
 
   return (
     <div
-      className={`min-h-screen ${
-        isDarkMode ? "bg-gray-950 text-gray-100" : "bg-gray-50 text-gray-900"
-      } transition-colors duration-200`}
+      className={`min-h-screen ${isDarkMode ? "bg-gray-950 text-gray-100" : "bg-gray-50 text-gray-900"
+        } transition-colors duration-200`}
     >
       {/* Navigation Bar */}
       <Navbar
@@ -331,11 +341,10 @@ const ExperimentsPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className={`rounded-3xl overflow-hidden shadow-xl relative mb-10 ${
-            isDarkMode
+          className={`rounded-3xl overflow-hidden shadow-xl relative mb-10 ${isDarkMode
               ? "bg-gradient-to-br from-indigo-900 via-blue-900 to-blue-800"
               : "bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-500"
-          }`}
+            }`}
         >
           <div className="absolute inset-0 overflow-hidden">
             <svg
@@ -367,11 +376,10 @@ const ExperimentsPage: React.FC = () => {
                   placeholder="Search experiments, domains, or topics..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className={`w-full py-3 pl-12 pr-4 rounded-full outline-none shadow-lg ${
-                    isDarkMode
+                  className={`w-full py-3 pl-12 pr-4 rounded-full outline-none shadow-lg ${isDarkMode
                       ? "bg-gray-800/80 text-white border border-gray-700 focus:border-blue-500"
                       : "bg-white text-gray-800 focus:ring-2 focus:ring-blue-400"
-                  }`}
+                    }`}
                 />
                 <Search
                   size={20}
@@ -395,18 +403,16 @@ const ExperimentsPage: React.FC = () => {
           {/* Filters - Desktop */}
           <div className="hidden md:block md:col-span-1">
             <Card
-              className={`sticky top-24 ${
-                isDarkMode
+              className={`sticky top-24 ${isDarkMode
                   ? "bg-gray-800 border-gray-700"
                   : "bg-white border-gray-200"
-              }`}
+                }`}
             >
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-center">
                   <CardTitle
-                    className={`text-lg ${
-                      isDarkMode ? "text-white" : "text-gray-900"
-                    }`}
+                    className={`text-lg ${isDarkMode ? "text-white" : "text-gray-900"
+                      }`}
                   >
                     Filters
                   </CardTitle>
@@ -414,11 +420,10 @@ const ExperimentsPage: React.FC = () => {
                     variant="ghost"
                     size="sm"
                     onClick={resetFilters}
-                    className={`text-sm ${
-                      isDarkMode
+                    className={`text-sm ${isDarkMode
                         ? "text-gray-300 hover:text-white hover:bg-gray-700"
                         : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
-                    }`}
+                      }`}
                   >
                     Reset All
                   </Button>
@@ -429,9 +434,8 @@ const ExperimentsPage: React.FC = () => {
                 {/* Domain Filter */}
                 <div>
                   <h4
-                    className={`font-medium mb-2 ${
-                      isDarkMode ? "text-gray-300" : "text-gray-700"
-                    }`}
+                    className={`font-medium mb-2 ${isDarkMode ? "text-gray-300" : "text-gray-700"
+                      }`}
                   >
                     Domain
                   </h4>
@@ -494,9 +498,8 @@ const ExperimentsPage: React.FC = () => {
                 {/* Discipline Filter */}
                 <div>
                   <h4
-                    className={`font-medium mb-2 ${
-                      isDarkMode ? "text-gray-300" : "text-gray-700"
-                    }`}
+                    className={`font-medium mb-2 ${isDarkMode ? "text-gray-300" : "text-gray-700"
+                      }`}
                   >
                     Discipline
                   </h4>
@@ -562,9 +565,8 @@ const ExperimentsPage: React.FC = () => {
           <div className="md:hidden mb-4">
             <button
               onClick={toggleFilters}
-              className={`w-full py-3 px-4 flex justify-between items-center rounded-lg shadow ${
-                isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
-              }`}
+              className={`w-full py-3 px-4 flex justify-between items-center rounded-lg shadow ${isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
+                }`}
             >
               <div className="flex items-center">
                 <Filter size={18} className="mr-2" />
@@ -583,9 +585,8 @@ const ExperimentsPage: React.FC = () => {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className={`mt-2 p-4 rounded-lg shadow-md ${
-                  isDarkMode ? "bg-gray-900" : "bg-white"
-                }`}
+                className={`mt-2 p-4 rounded-lg shadow-md ${isDarkMode ? "bg-gray-900" : "bg-white"
+                  }`}
               >
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="font-semibold">Filters</h3>
@@ -600,20 +601,18 @@ const ExperimentsPage: React.FC = () => {
                 {/* Sort By */}
                 <div className="mb-4">
                   <h4
-                    className={`font-medium mb-2 ${
-                      isDarkMode ? "text-gray-300" : "text-gray-700"
-                    }`}
+                    className={`font-medium mb-2 ${isDarkMode ? "text-gray-300" : "text-gray-700"
+                      }`}
                   >
                     Sort By
                   </h4>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className={`w-full p-2 rounded border ${
-                      isDarkMode
+                    className={`w-full p-2 rounded border ${isDarkMode
                         ? "bg-gray-800 text-white border-gray-700"
                         : "bg-white text-gray-900 border-gray-300"
-                    }`}
+                      }`}
                   >
                     <option value="popularity">Popularity</option>
                     <option value="rating">Rating</option>
@@ -624,20 +623,18 @@ const ExperimentsPage: React.FC = () => {
                 {/* Domain Filter */}
                 <div className="mb-4">
                   <h4
-                    className={`font-medium mb-2 ${
-                      isDarkMode ? "text-gray-300" : "text-gray-700"
-                    }`}
+                    className={`font-medium mb-2 ${isDarkMode ? "text-gray-300" : "text-gray-700"
+                      }`}
                   >
                     Domain
                   </h4>
                   <select
                     value={selectedDomain}
                     onChange={(e) => setSelectedDomain(e.target.value)}
-                    className={`w-full p-2 rounded border ${
-                      isDarkMode
+                    className={`w-full p-2 rounded border ${isDarkMode
                         ? "bg-gray-800 text-white border-gray-700"
                         : "bg-white text-gray-900 border-gray-300"
-                    }`}
+                      }`}
                   >
                     <option value="">All Domains</option>
                     {domains.map((domain) => (
@@ -651,20 +648,18 @@ const ExperimentsPage: React.FC = () => {
                 {/* Discipline Filter */}
                 <div className="mb-2">
                   <h4
-                    className={`font-medium mb-2 ${
-                      isDarkMode ? "text-gray-300" : "text-gray-700"
-                    }`}
+                    className={`font-medium mb-2 ${isDarkMode ? "text-gray-300" : "text-gray-700"
+                      }`}
                   >
                     Discipline
                   </h4>
                   <select
                     value={selectedDiscipline}
                     onChange={(e) => setSelectedDiscipline(e.target.value)}
-                    className={`w-full p-2 rounded border ${
-                      isDarkMode
+                    className={`w-full p-2 rounded border ${isDarkMode
                         ? "bg-gray-800 text-white border-gray-700"
                         : "bg-white text-gray-900 border-gray-300"
-                    }`}
+                      }`}
                   >
                     <option value="">All Disciplines</option>
                     {disciplines.map((discipline) => (
@@ -691,9 +686,8 @@ const ExperimentsPage: React.FC = () => {
               {/* Desktop Sort */}
               <div className="hidden md:flex items-center">
                 <span
-                  className={`mr-2 ${
-                    isDarkMode ? "text-gray-300" : "text-gray-600"
-                  }`}
+                  className={`mr-2 ${isDarkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
                 >
                   Sort by
                 </span>
@@ -715,11 +709,10 @@ const ExperimentsPage: React.FC = () => {
               <div className="flex flex-wrap gap-2 mb-4">
                 {selectedDomain && (
                   <div
-                    className={`px-3 py-1 rounded-full text-sm flex items-center ${
-                      isDarkMode
+                    className={`px-3 py-1 rounded-full text-sm flex items-center ${isDarkMode
                         ? "bg-blue-900/50 text-blue-200"
                         : "bg-blue-100 text-blue-800"
-                    }`}
+                      }`}
                   >
                     Domain: {selectedDomain}
                     <button
@@ -732,11 +725,10 @@ const ExperimentsPage: React.FC = () => {
                 )}
                 {selectedDiscipline && (
                   <div
-                    className={`px-3 py-1 rounded-full text-sm flex items-center ${
-                      isDarkMode
+                    className={`px-3 py-1 rounded-full text-sm flex items-center ${isDarkMode
                         ? "bg-blue-900/50 text-blue-200"
                         : "bg-blue-100 text-blue-800"
-                    }`}
+                      }`}
                   >
                     Discipline: {selectedDiscipline}
                     <button
@@ -749,11 +741,10 @@ const ExperimentsPage: React.FC = () => {
                 )}
                 <button
                   onClick={resetFilters}
-                  className={`px-3 py-1 rounded-full text-sm ${
-                    isDarkMode
+                  className={`px-3 py-1 rounded-full text-sm ${isDarkMode
                       ? "text-gray-300 hover:text-white"
                       : "text-gray-600 hover:text-gray-900"
-                  }`}
+                    }`}
                 >
                   Clear All
                 </button>
@@ -766,9 +757,8 @@ const ExperimentsPage: React.FC = () => {
                 <div className="text-center">
                   <Loader2
                     size={40}
-                    className={`animate-spin mx-auto mb-4 ${
-                      isDarkMode ? "text-blue-400" : "text-blue-600"
-                    }`}
+                    className={`animate-spin mx-auto mb-4 ${isDarkMode ? "text-blue-400" : "text-blue-600"
+                      }`}
                   />
                   <p className={isDarkMode ? "text-gray-300" : "text-gray-600"}>
                     Loading experiments...
@@ -780,17 +770,15 @@ const ExperimentsPage: React.FC = () => {
                 {/* No Results State */}
                 {filteredExperiments.length === 0 ? (
                   <div
-                    className={`text-center p-12 rounded-lg border ${
-                      isDarkMode
+                    className={`text-center p-12 rounded-lg border ${isDarkMode
                         ? "bg-gray-900 border-gray-800"
                         : "bg-white border-gray-200"
-                    }`}
+                      }`}
                   >
                     <Search
                       size={48}
-                      className={`mx-auto mb-4 ${
-                        isDarkMode ? "text-gray-700" : "text-gray-300"
-                      }`}
+                      className={`mx-auto mb-4 ${isDarkMode ? "text-gray-700" : "text-gray-300"
+                        }`}
                     />
                     <h3 className="text-xl font-semibold mb-2">
                       No experiments found
@@ -802,11 +790,10 @@ const ExperimentsPage: React.FC = () => {
                     </p>
                     <button
                       onClick={resetFilters}
-                      className={`mt-4 px-4 py-2 rounded-lg ${
-                        isDarkMode
+                      className={`mt-4 px-4 py-2 rounded-lg ${isDarkMode
                           ? "bg-blue-700 text-white hover:bg-blue-600"
                           : "bg-blue-600 text-white hover:bg-blue-700"
-                      }`}
+                        }`}
                     >
                       Reset Filters
                     </button>
@@ -820,11 +807,10 @@ const ExperimentsPage: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4 }}
-                        className={`rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer ${
-                          isDarkMode
+                        className={`rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer ${isDarkMode
                             ? "bg-gray-900 border border-gray-800"
                             : "bg-white border border-gray-100"
-                        }`}
+                          }`}
                         onClick={() => window.location.href = `/experiment`}
                       >
                         {/* Card Image */}
@@ -835,16 +821,15 @@ const ExperimentsPage: React.FC = () => {
                             className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                           />
                         </div>
-                  
+
                         {/* Card Content */}
                         <div className="p-4">
                           <h3 className="text-lg font-semibold mb-2">
                             {experiment.title}
                           </h3>
                           <p
-                            className={`text-sm ${
-                              isDarkMode ? "text-gray-300" : "text-gray-600"
-                            }`}
+                            className={`text-sm ${isDarkMode ? "text-gray-300" : "text-gray-600"
+                              }`}
                           >
                             {experiment.description}
                           </p>
@@ -856,9 +841,8 @@ const ExperimentsPage: React.FC = () => {
                                 className="w-6 h-6 rounded-full mr-2"
                               />
                               <span
-                                className={`text-sm ${
-                                  isDarkMode ? "text-gray-300" : "text-gray-600"
-                                }`}
+                                className={`text-sm ${isDarkMode ? "text-gray-300" : "text-gray-600"
+                                  }`}
                               >
                                 {experiment.collegeName}
                               </span>

@@ -22,20 +22,30 @@ const ExperimentPage: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("aim");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Use system preference for initial theme
   useEffect(() => {
-    if (
+    // Check localStorage first for saved preference
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+    } else if (
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
+      // Fall back to system preference only if no saved preference
       setIsDarkMode(true);
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
     }
   }, []);
-
+  
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
   };
 
   // Side navigation menu categories and items

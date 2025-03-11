@@ -577,7 +577,7 @@ const AlgorithmContent: React.FC<AlgorithmContentProps> = ({
 
   return (
     <div className="space-y-10">
-      {/* Hero Section with Video */}
+      {/* Hero Section */}
       <div
         className={`relative overflow-hidden rounded-xl ${
           isDarkMode
@@ -599,19 +599,8 @@ const AlgorithmContent: React.FC<AlgorithmContentProps> = ({
           </p>
         </div>
       </div>
-      <div className="mt-6 bg-black/20 rounded-xl overflow-hidden shadow-xl">
-        <div className="aspect-video">
-          <iframe
-            src="https://www.youtube.com/embed/ph-C6sUyzE4?si=gAYhBlJkxkrHVFjT"
-            className="w-full h-full"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </div>
 
-      {/* Algorithm Section (New) */}
+      {/* Algorithm Section */}
       <div
         className={`rounded-xl shadow-md p-6 border transition-all hover:shadow-lg ${
           isDarkMode
@@ -790,7 +779,7 @@ const AlgorithmContent: React.FC<AlgorithmContentProps> = ({
             </div>
           </div>
 
-          <div>
+          <div className={'flex flex-col justify-end'}>
             <h4
               className={`font-semibold mb-3 ${
                 isDarkMode ? "text-gray-200" : "text-gray-800"
@@ -945,6 +934,19 @@ const AlgorithmContent: React.FC<AlgorithmContentProps> = ({
           >
             <EnhancedBubbleSortAnimation />
           </div>
+        </div>
+      </div>
+
+      {/* Video */}
+      <div className="mt-6 bg-black/20 rounded-xl overflow-hidden shadow-xl">
+        <div className="aspect-video">
+          <iframe
+            src="https://www.youtube.com/embed/ph-C6sUyzE4?si=gAYhBlJkxkrHVFjT"
+            className="w-full h-full"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
 

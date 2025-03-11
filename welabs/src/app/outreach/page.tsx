@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight, Users, Calendar, Award, Globe } from "lucide-react";
 
 import Navbar from "@/components/layout/Navbar";
@@ -15,17 +13,28 @@ const OutreachPage: React.FC = () => {
 
   // Use system preference for initial theme
   useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      setIsDarkMode(true);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+      // Check localStorage first for saved preference
+      const savedTheme = localStorage.getItem('theme');
+      
+      if (savedTheme) {
+        setIsDarkMode(savedTheme === 'dark');
+      } else if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        // Fall back to system preference only if no saved preference
+        setIsDarkMode(true);
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    }, []);
+    
+    const toggleTheme = () => {
+      const newTheme = !isDarkMode;
+      setIsDarkMode(newTheme);
+      localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
