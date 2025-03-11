@@ -691,7 +691,6 @@ const ExperimentsPage: React.FC = () => {
 
                                 {/* Button */}
                                 <button
-                                  onClick={() => window.location.href = `/experiment`}
                                   className={`w-full py-2 mt-4 rounded-lg font-medium transition-colors cursor-pointer ${
                                     isDarkMode
                                       ? "bg-indigo-600 hover:bg-indigo-700 text-white"
