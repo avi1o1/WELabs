@@ -1977,12 +1977,31 @@ const PhysicsSensorsContent: React.FC = () => {
         );
     }
   };
-
-  const toggleTheme = () => {
-    const newTheme = !isDarkMode;
-    setIsDarkMode(newTheme);
-    localStorage.setItem("theme", newTheme ? "dark" : "light");
-  };
+  
+  // Use system preference for initial theme
+    useEffect(() => {
+      // Check localStorage first for saved preference
+      const savedTheme = localStorage.getItem('theme');
+  
+      if (savedTheme) {
+        setIsDarkMode(savedTheme === 'dark');
+      } else if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        // Fall back to system preference only if no saved preference
+        setIsDarkMode(true);
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    }, []);
+  
+    const toggleTheme = () => {
+      const newTheme = !isDarkMode;
+      setIsDarkMode(newTheme);
+      localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

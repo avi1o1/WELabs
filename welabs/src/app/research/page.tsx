@@ -14,28 +14,28 @@ const ResearchPage: React.FC = () => {
 
   // Use system preference for initial theme
   useEffect(() => {
-      // Check localStorage first for saved preference
-      const savedTheme = localStorage.getItem('theme');
-      
-      if (savedTheme) {
-        setIsDarkMode(savedTheme === 'dark');
-      } else if (
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-      ) {
-        // Fall back to system preference only if no saved preference
-        setIsDarkMode(true);
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-    }, []);
-    
-    const toggleTheme = () => {
-      const newTheme = !isDarkMode;
-      setIsDarkMode(newTheme);
-      localStorage.setItem('theme', newTheme ? 'dark' : 'light');
-    };
+    // Check localStorage first for saved preference
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+    } else if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      // Fall back to system preference only if no saved preference
+      setIsDarkMode(true);
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -73,28 +73,28 @@ const ResearchPage: React.FC = () => {
 
   // Publications list
   const publicationsList = [
-    { 
+    {
       title: "Advancements in Virtual Laboratory Design: A Comprehensive Review",
       authors: "Sharma, P., Gupta, S., & Reddy, K.",
       journal: "Journal of Educational Technology",
       year: "2024",
       type: "PDF"
     },
-    { 
+    {
       title: "Comparative Analysis of Student Engagement in Physical vs. Virtual Labs",
       authors: "Reddy, K., Singh, A., & Patel, M.",
       journal: "Science Education Quarterly",
       year: "2023",
       type: "PDF"
     },
-    { 
+    {
       title: "Implementing Accessible Design in Online Scientific Laboratories",
       authors: "Gupta, S., Sharma, P., & Singh, A.",
       journal: "Inclusive Education Today",
       year: "2023",
       type: "PDF"
     },
-    { 
+    {
       title: "Machine Learning Approaches to Adaptive Virtual Lab Experiences",
       authors: "Patel, M., Kumar, R., & Sharma, P.",
       journal: "AI in Education Review",
@@ -105,9 +105,8 @@ const ResearchPage: React.FC = () => {
 
   return (
     <div
-      className={`min-h-screen ${
-        isDarkMode ? "bg-gray-950 text-gray-100" : "bg-gray-50 text-gray-900"
-      } transition-colors duration-200`}
+      className={`min-h-screen ${isDarkMode ? "bg-gray-950 text-gray-100" : "bg-gray-50 text-gray-900"
+        } transition-colors duration-200`}
     >
       {/* Navigation Bar */}
       <Navbar
@@ -127,11 +126,10 @@ const ResearchPage: React.FC = () => {
           className="rounded-3xl overflow-hidden shadow-xl relative"
         >
           <div
-            className={`${
-              isDarkMode
+            className={`${isDarkMode
                 ? "bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900"
                 : "bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-600"
-            } text-white`}
+              } text-white`}
           >
             <div className="absolute inset-0 overflow-hidden">
               <svg
@@ -151,7 +149,7 @@ const ResearchPage: React.FC = () => {
                 Research Initiatives
               </h1>
               <p className="text-lg md:text-xl leading-relaxed text-gray-100 max-w-3xl">
-                Our research team is dedicated to advancing knowledge and innovation in key areas that 
+                Our research team is dedicated to advancing knowledge and innovation in key areas that
                 drive technological progress and address real-world challenges in virtual learning environments.
               </p>
             </div>
@@ -159,7 +157,7 @@ const ResearchPage: React.FC = () => {
         </motion.section>
 
         {/* Research Overview */}
-        <motion.section 
+        <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -167,18 +165,16 @@ const ResearchPage: React.FC = () => {
         >
           <div className="text-center space-y-4">
             <h2
-              className={`text-3xl md:text-4xl font-bold ${
-                isDarkMode ? "text-white" : "text-gray-900"
-              }`}
+              className={`text-3xl md:text-4xl font-bold ${isDarkMode ? "text-white" : "text-gray-900"
+                }`}
             >
               Our Research Focus
             </h2>
             <p
-              className={`text-lg ${
-                isDarkMode ? "text-gray-300" : "text-gray-600"
-              } max-w-2xl mx-auto`}
+              className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-600"
+                } max-w-2xl mx-auto`}
             >
-              Through collaboration, experimentation, and rigorous analysis, we aim to contribute 
+              Through collaboration, experimentation, and rigorous analysis, we aim to contribute
               meaningful insights to the scientific community
             </p>
           </div>
@@ -190,18 +186,16 @@ const ResearchPage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 * index }}
-                className={`rounded-xl p-6 ${
-                  isDarkMode ? "bg-gray-800 border border-gray-700" : "bg-white shadow-md"
-                } ${index === 0 || index === 1 ? "lg:col-span-2" : ""}`}
+                className={`rounded-xl p-6 ${isDarkMode ? "bg-gray-800 border border-gray-700" : "bg-white shadow-md"
+                  } ${index === 0 || index === 1 ? "lg:col-span-2" : ""}`}
               >
                 <div className="flex justify-between items-center mb-4">
                   <span className={isDarkMode ? "text-gray-300" : "text-gray-600"}>
                     {metric}
                   </span>
                   {index < 2 && (
-                    <span className={`text-xs px-2 py-1 rounded-full ${
-                      isDarkMode ? "bg-blue-900/30 text-blue-400" : "bg-blue-100 text-blue-800"
-                    }`}>
+                    <span className={`text-xs px-2 py-1 rounded-full ${isDarkMode ? "bg-blue-900/30 text-blue-400" : "bg-blue-100 text-blue-800"
+                      }`}>
                       Growing
                     </span>
                   )}
@@ -225,15 +219,14 @@ const ResearchPage: React.FC = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-4 py-2 rounded-lg whitespace-nowrap transition-colors ${
-                    activeTab === tab.id
+                  className={`px-4 py-2 rounded-lg whitespace-nowrap transition-colors ${activeTab === tab.id
                       ? isDarkMode
                         ? "bg-blue-600 text-white"
                         : "bg-blue-600 text-white"
                       : isDarkMode
-                      ? "bg-gray-800 text-gray-300 hover:bg-gray-700"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
+                        ? "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
                 >
                   {tab.label}
                 </button>
@@ -248,15 +241,13 @@ const ResearchPage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={`rounded-2xl overflow-hidden ${
-                  isDarkMode
+                className={`rounded-2xl overflow-hidden ${isDarkMode
                     ? "bg-gray-800/50 border border-gray-700"
                     : "bg-white shadow-lg"
-                }`}
+                  }`}
               >
-                <div className={`h-32 flex items-center justify-center ${
-                  isDarkMode ? "bg-gray-700/30" : "bg-gray-50"
-                }`}>
+                <div className={`h-32 flex items-center justify-center ${isDarkMode ? "bg-gray-700/30" : "bg-gray-50"
+                  }`}>
                   <div className="text-center">
                     {area.icon}
                     <div className={`mt-2 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
@@ -272,9 +263,8 @@ const ResearchPage: React.FC = () => {
                     {area.description}
                   </p>
                   <button
-                    className={`inline-flex items-center text-sm font-medium ${
-                      isDarkMode ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-700"
-                    }`}
+                    className={`inline-flex items-center text-sm font-medium ${isDarkMode ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-700"
+                      }`}
                   >
                     Explore research <ArrowRight size={14} className="ml-1" />
                   </button>
@@ -289,29 +279,26 @@ const ResearchPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className={`rounded-2xl overflow-hidden ${
-            isDarkMode
+          className={`rounded-2xl overflow-hidden ${isDarkMode
               ? "bg-gray-800/50 border border-gray-700"
               : "bg-white shadow-xl"
-          }`}
+            }`}
         >
           <div className="p-8">
             <h2 className={`text-2xl font-bold mb-6 ${isDarkMode ? "text-white" : "text-gray-900"}`}>
               Notable Publications
             </h2>
-            
+
             <div className="space-y-4">
               {publicationsList.map((publication, index) => (
-                <div 
+                <div
                   key={index}
-                  className={`flex items-center justify-between p-4 rounded-lg ${
-                    isDarkMode ? "bg-gray-700/50 hover:bg-gray-700" : "bg-gray-50 hover:bg-gray-100"
-                  } transition-colors`}
+                  className={`flex items-center justify-between p-4 rounded-lg ${isDarkMode ? "bg-gray-700/50 hover:bg-gray-700" : "bg-gray-50 hover:bg-gray-100"
+                    } transition-colors`}
                 >
                   <div className="flex items-center">
-                    <div className={`p-2 rounded-lg mr-4 ${
-                      isDarkMode ? "bg-gray-600" : "bg-gray-200"
-                    }`}>
+                    <div className={`p-2 rounded-lg mr-4 ${isDarkMode ? "bg-gray-600" : "bg-gray-200"
+                      }`}>
                       <FileText size={20} className={isDarkMode ? "text-gray-300" : "text-gray-700"} />
                     </div>
                     <div>
@@ -323,12 +310,11 @@ const ResearchPage: React.FC = () => {
                       </p>
                     </div>
                   </div>
-                  <button 
-                    className={`p-2 rounded-lg transition-colors ${
-                      isDarkMode 
-                        ? "text-blue-400 hover:bg-blue-900/30" 
+                  <button
+                    className={`p-2 rounded-lg transition-colors ${isDarkMode
+                        ? "text-blue-400 hover:bg-blue-900/30"
                         : "text-blue-600 hover:bg-blue-50"
-                    }`}
+                      }`}
                     aria-label="Download publication"
                   >
                     <Download size={18} />
@@ -336,14 +322,13 @@ const ResearchPage: React.FC = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="mt-8">
-              <button 
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  isDarkMode 
-                    ? "bg-blue-600 text-white hover:bg-blue-700" 
+              <button
+                className={`px-6 py-3 rounded-lg font-medium transition-all ${isDarkMode
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
                     : "bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg"
-                }`}
+                  }`}
               >
                 View All Publications
               </button>
@@ -356,11 +341,10 @@ const ResearchPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className={`rounded-3xl p-8 md:p-12 overflow-hidden relative ${
-            isDarkMode
+          className={`rounded-3xl p-8 md:p-12 overflow-hidden relative ${isDarkMode
               ? "bg-gradient-to-r from-blue-900 to-purple-900 shadow-lg"
               : "bg-gradient-to-r from-blue-500 to-purple-500 shadow-xl"
-          }`}
+            }`}
         >
           {/* Background patterns */}
           <div className="absolute inset-0 overflow-hidden">
@@ -381,7 +365,7 @@ const ResearchPage: React.FC = () => {
               Research Opportunities
             </h2>
             <p className="text-white text-lg mb-8">
-              We welcome collaboration with researchers, institutions, and industry partners who share our 
+              We welcome collaboration with researchers, institutions, and industry partners who share our
               interests. We also offer opportunities for graduate students and postdoctoral researchers.
             </p>
 

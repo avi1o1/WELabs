@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     {
       title: "Experiments",
-      link: "/experiments/",
+      link: "/experiments",
     },
     {
       title: "About",
@@ -88,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({
             <div className="hidden md:flex items-center space-x-6">
               {/* Experiments Link (now a regular nav item) */}
               <a
-                href="/experiments/"
+                href="/experiments"
                 className={`font-medium transition-colors ${
                   isDarkMode
                     ? "text-white hover:text-blue-300"
@@ -96,6 +96,15 @@ const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 Experiments
+              </a>
+              <a
+                href="/interactive"
+                className={`font-medium transition-colors ${isDarkMode
+                    ? "text-white hover:text-blue-300"
+                    : "text-gray-800 hover:text-blue-600"
+                  }`}
+              >
+                Interactive
               </a>
 
               {/* Other nav items with dropdowns */}
